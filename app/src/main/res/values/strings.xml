@@ -1,3 +1,43 @@
 <resources>
-    <string name="app_name">Licenta</string>
+    <string name="app_name">ECG</string>
+    <string name="nume_autor">Axentii Marcel</string>
+    <string name="email_autor">marcel.axentii@mail.ru</string>
+    <string name="home_item">Home</string>
+    <string name="about_us_item">About</string>
+    <string name="contact_item">Contact</string>
+    <string name="share_item">Share</string>
+    <string name="logout_item">LOG OUT</string>
+    <string name="submit">add</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rate_the_trip">Rate the trip :</string>
+    <string name="textBox_end_date">End date</string>
+    <string name="textBox_start_date">Start date</string>
+    <string name="textView_value">(EUR)</string>
+    <string name="textView_select_the_price">Select the Price :</string>
+    <string name="title_trip_type">Select Trip Type :</string>
+    <string name="editText_destination">Destination</string>
+    <string name="editText_trip_name">Trip Name</string>
+    <string name="title_new_trip">New Trip</string>
+    <string name="bt_save">Save</string>
+    <string name="mail">Email</string>
+    <string name="password">Password</string>
+    <string name="log_in">Login</string>
+    <string name="sign">Register to enter</string>
+    <string name="clean">Clean all</string>
+    <string name="forgot">Forgot Password ?</string>
+    <string name="warning">Introduceti un email valid !</string>
+    <string name="danger">Completati toate casutele !</string>
+    <string name="logo">logo</string>
+    <string name="password_confirm">Re-enter password</string>
+    <string name="register">Register</string>
+    <string name="return_to_LoginScreen">Return to sign in</string>
+    <string name="pass_invalid">Ati introdus parole diferite</string>
+    <string name="about_travel_J">  A travel journal is a place to plan and organize your trips, write about your experiences, and add paper mementos from the trip. Use it to write about memories large and small, who you met along the journey, and what you learned.</string>
+    <string name="contact_lastMessage">Nice to meet you, we will chat soon.</string>
+    <string name="bt_returnHome">Take me back home</string>
+    <string name="warning_temp">We need a existent city for temp !</string>
+    <string name="title_temp">Temperature in this destination :</string>
+    <string name="title_update">Update Trip</string>
+    <string name="bt_update">Update</string>
 </resources>

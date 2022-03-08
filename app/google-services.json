@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "586324347379",
+    "firebase_url": "https://ecg-project-74b06-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "ecg-project-74b06",
+    "storage_bucket": "ecg-project-74b06.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586324347379:android:0ef6c6f974f9124b206a86",
+        "android_client_info": {
+          "package_name": "ro.marcu.licenta"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586324347379-cjp35u93dhsuuok9vfruloo01htnu7qm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTzVXN-9OkABtTOtHJRl-qLrHOXOeqrQo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586324347379-cjp35u93dhsuuok9vfruloo01htnu7qm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

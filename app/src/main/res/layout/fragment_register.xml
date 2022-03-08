@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".fragments.RegisterFragment">
+
+    <ImageView
+        android:id="@+id/logo_register"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/logo_ecg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/password_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </ImageView>
+
+    <EditText
+        android:id="@+id/input_email_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@null"
+        android:hint="@string/mail"
+        android:importantForAutofill="no"
+        android:inputType="textEmailSubject"
+        android:textColor="@color/app_orange"
+        android:textColorHint="@color/app_yellow"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/email_line"
+        app:layout_constraintEnd_toEndOf="@id/email_line"
+        app:layout_constraintStart_toStartOf="@id/email_line">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/input_password_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="@string/password"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:textColor="@color/app_orange"
+        android:textColorHint="@color/app_yellow"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/password_line"
+        app:layout_constraintStart_toStartOf="@id/password_line"
+        app:layout_constraintTop_toBottomOf="@id/logo_register"
+        android:layout_marginTop="60dp">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/input_reEnter_password_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@null"
+        android:hint="@string/password_confirm"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:textColor="@color/app_orange"
+        android:textColorHint="@color/app_yellow"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@id/password_line"
+        app:layout_constraintStart_toStartOf="@id/password_line"
+        app:layout_constraintTop_toBottomOf="@id/password_line">
+
+    </EditText>
+
+    <View
+        android:id="@+id/password_line"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/app_red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_password_register" />
+
+    <View
+        android:id="@+id/rePassword_line"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/app_red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_reEnter_password_register" />
+
+    <View
+        android:id="@+id/email_line"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/app_red"
+        app:layout_constraintBottom_toTopOf="@+id/input_password_register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <Button
+        android:id="@+id/register_btn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/app_orange"
+        android:text="@string/register"
+        android:textColor="@color/app_yellow"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rePassword_line">
+
+    </Button>
+
+    <TextView
+        android:id="@+id/input_email_warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/warning"
+        android:textColor="@color/app_warning"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/register_btn">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/password_register_warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/danger"
+        android:textColor="@color/app_danger"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_email_warning">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/password_confirm_register_warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/pass_invalid"
+        android:textColor="@color/app_danger"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_email_warning">
+
+    </TextView>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/background_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_email_warning">
+
+    </ImageView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
