@@ -13,10 +13,10 @@
         android:layout_height="200dp"
         android:contentDescription="@string/logo"
         android:src="@drawable/logo_ecg"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/password_line"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
     </ImageView>
 
@@ -42,6 +42,7 @@
         android:id="@+id/input_password_register"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:background="@null"
         android:hint="@string/password"
         android:importantForAutofill="no"
@@ -51,8 +52,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@id/password_line"
         app:layout_constraintStart_toStartOf="@id/password_line"
-        app:layout_constraintTop_toBottomOf="@id/logo_register"
-        android:layout_marginTop="60dp">
+        app:layout_constraintTop_toBottomOf="@id/logo_register">
 
     </EditText>
 
@@ -104,7 +104,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-
     <Button
         android:id="@+id/register_btn"
         android:layout_width="300dp"
@@ -113,72 +112,52 @@
         android:backgroundTint="@color/app_orange"
         android:text="@string/register"
         android:textColor="@color/app_yellow"
-        android:textSize="16sp"
+        app:cornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rePassword_line">
 
     </Button>
 
-    <TextView
-        android:id="@+id/input_email_warning"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/register_background_img"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="@string/warning"
-        android:textColor="@color/app_warning"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:visibility="invisible"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/background_bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/register_btn">
 
-    </TextView>
-
-    <TextView
-        android:id="@+id/password_register_warning"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/danger"
-        android:textColor="@color/app_danger"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_email_warning">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/password_confirm_register_warning"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/pass_invalid"
-        android:textColor="@color/app_danger"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_email_warning">
-
-    </TextView>
+    </ImageView>
 
     <ImageView
-        android:layout_width="match_parent"
+        android:id="@+id/register_to_lView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/logo"
-        android:src="@drawable/background_bottom"
+        android:clickable="true"
+        android:contentDescription="@string/ic_login"
+        android:src="@drawable/ic_down_arrow"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_email_warning">
+        app:layout_constraintStart_toStartOf="parent">
 
     </ImageView>
+
+    <TextView
+        android:id="@+id/sign_up_tView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="login"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/register_to_lView">
+
+    </TextView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

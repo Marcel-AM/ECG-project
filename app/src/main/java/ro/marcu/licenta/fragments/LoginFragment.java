@@ -1,23 +1,33 @@
 package ro.marcu.licenta.fragments;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import ro.marcu.licenta.R;
+import ro.marcu.licenta.activities.FirstScreen;
 
 public class LoginFragment extends Fragment {
 
     private EditText editTextMail, editTextPassword;
-    private TextView register, clean;
+    private TextView clean;
     private Button buttonLogin;
+    private ImageView registerView;
     private CallbackLoginFragment callbackLoginFragment;
 
     @Override
@@ -39,10 +49,10 @@ public class LoginFragment extends Fragment {
 
         buttonLogin = view.findViewById(R.id.splash_screen_btn);
 
-        register = view.findViewById(R.id.sign_up_tView);
+        registerView = view.findViewById(R.id.login_to_rView);
         clean = view.findViewById(R.id.clean_tView);
 
-        register.setOnClickListener(v -> goToRegisterFragment());
+        registerView.setOnClickListener(v -> goToRegisterFragment());
         clean.setOnClickListener(v -> cleanAllInput());
 
         buttonLogin.setOnClickListener(v -> {
@@ -60,33 +70,21 @@ public class LoginFragment extends Fragment {
     }
 
     private void validationInput(EditText editTextMail, EditText editTextPassword) {
-
-        TextView mailWarning = getView().findViewById(R.id.mail_warning);
-        TextView missingInput = getView().findViewById(R.id.password_warning);
-
         String mail = editTextMail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
-        if (isValidEmail(mail) && !password.isEmpty()) {
-            exceptionInvisible(mailWarning, missingInput);
-            callbackLoginFragment.parseLoginData(mail, password);
+        if (mail.isEmpty() || !isValidEmail(mail)) {
+            editTextMail.setError("Email required !");
+            editTextMail.requestFocus();
+        } else if (password.isEmpty()) {
+            editTextPassword.setError("Password required !");
+            editTextPassword.requestFocus();
+        } else if (password.length() <= 5) {
+            editTextPassword.setError("Min 6 characters !");
+            editTextPassword.requestFocus();
         } else {
-            exceptionInvisible(mailWarning, missingInput);
-
-            if (password.isEmpty()) {
-                missingInput.setVisibility(View.VISIBLE);
-            }
-            if (!isValidEmail(mail)) {
-                mailWarning.setVisibility(View.VISIBLE);
-            }
+            callbackLoginFragment.parseLoginData(mail, password);
         }
-
-    }
-
-    private void exceptionInvisible(TextView mailWarning, TextView missingInput) {
-
-        mailWarning.setVisibility(View.INVISIBLE);
-        missingInput.setVisibility(View.INVISIBLE);
 
     }
 
@@ -101,7 +99,7 @@ public class LoginFragment extends Fragment {
 
     private void goToRegisterFragment() {
         if (callbackLoginFragment != null) {
-            callbackLoginFragment.changeFragment();
+            callbackLoginFragment.changeToRegisterFragment();
         }
     }
 

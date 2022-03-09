@@ -23,7 +23,7 @@
     <string name="mail">Email</string>
     <string name="password">Password</string>
     <string name="log_in">Login</string>
-    <string name="sign">Register to enter</string>
+    <string name="sign">register</string>
     <string name="clean">Clean all</string>
     <string name="forgot">Forgot Password ?</string>
     <string name="warning">Introduceti un email valid !</string>
@@ -40,4 +40,8 @@
     <string name="title_temp">Temperature in this destination :</string>
     <string name="title_update">Update Trip</string>
     <string name="bt_update">Update</string>
+    <string name="bubble_top">Bubble top</string>
+    <string name="main_logo">Logo</string>
+    <string name="ic_register">Register</string>
+    <string name="ic_login">Back to login</string>
 </resources>

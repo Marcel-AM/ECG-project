@@ -1,26 +1,30 @@
 package ro.marcu.licenta.activities;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 import ro.marcu.licenta.R;
 import ro.marcu.licenta.fragments.CallbackLoginFragment;
 import ro.marcu.licenta.fragments.LoginFragment;
+import ro.marcu.licenta.fragments.NetworkFragment;
 import ro.marcu.licenta.fragments.RegisterFragment;
 
 public class FirstScreen extends AppCompatActivity implements CallbackLoginFragment {
@@ -42,31 +46,46 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_screen);
 
-
+        checkInternetConnection();
         //goToMainScreenExtra();
 
         mAuth = FirebaseAuth.getInstance();
 
-        addFragment();
 
         editTextMail = findViewById(R.id.input_email);
         editTextPassword = findViewById(R.id.input_password);
 
     }
 
-    public void addFragment() {
+    public void loginFragment() {
         LoginFragment fragment = new LoginFragment();
         fragment.setCallbackFragment(this);
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.enter_register_to_login, R.anim.exit_register_to_login,
+                R.anim.enter_login_to_register, R.anim.exit_login_to_register);
         fragmentTransaction.add(R.id.thePlaceholder, fragment);
         fragmentTransaction.commit();
     }
 
-    public void replaceFragment() {
+    public void networkFragment() {
+        NetworkFragment fragment = new NetworkFragment();
+        fragment.setCallbackFragment(this);
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.enter_register_to_login, R.anim.exit_register_to_login,
+                R.anim.enter_login_to_register, R.anim.exit_login_to_register);
+        fragmentTransaction.add(R.id.thePlaceholder, fragment);
+        fragmentTransaction.commit();
+    }
+
+
+    public void registerFragment() {
         fragment = new RegisterFragment();
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.enter_login_to_register, R.anim.exit_login_to_register,
+                R.anim.enter_register_to_login, R.anim.exit_register_to_login);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.add(R.id.thePlaceholder, fragment);
         fragmentTransaction.commit();
@@ -74,8 +93,18 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
 
 
     @Override
-    public void changeFragment() {
-        replaceFragment();
+    public void changeToRegisterFragment() {
+        registerFragment();
+    }
+
+    @Override
+    public void changeToLoginFragment() {
+        loginFragment();
+    }
+
+    @Override
+    public void changeToNetworkFragment() {
+        networkFragment();
     }
 
     @Override
@@ -122,11 +151,17 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
                         if (task.isSuccessful()) {
                             Toast.makeText(FirstScreen.this, "User Created.",
                                     Toast.LENGTH_SHORT).show();
-                            addFragment();
+                            loginFragment();
 
                         } else {
-                            Toast.makeText(FirstScreen.this, "Register failed.",
-                                    Toast.LENGTH_SHORT).show();
+
+                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                Toast.makeText(FirstScreen.this, "User with this email already exist.",
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(FirstScreen.this, "Register failed.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 });
@@ -143,9 +178,27 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
 
         startActivity(intentGoToDashboard);
     }
+
+    private void checkInternetConnection() {
+        if (!isConnected(FirstScreen.this)) {
+            networkFragment();
+        } else {
+            loginFragment();
+        }
+    }
+
+    private boolean isConnected(FirstScreen firstScreen) {
+
+        ConnectivityManager connectivityManager = (ConnectivityManager) firstScreen.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo wifiConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileConn = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+        return (wifiConn != null && wifiConn.isConnected()) || (mobileConn != null && mobileConn.isConnected());
+    }
+
+
     @Override
     public void onBackPressed() {
-        Intent intentRefresh = new Intent(this, FirstScreen.class);
-        startActivity(intentRefresh);
     }
 }
