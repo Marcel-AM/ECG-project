@@ -1,14 +1,7 @@
 package ro.marcu.licenta.fragments;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +13,6 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import ro.marcu.licenta.R;
-import ro.marcu.licenta.activities.FirstScreen;
 
 public class LoginFragment extends Fragment {
 
@@ -29,6 +21,7 @@ public class LoginFragment extends Fragment {
     private Button buttonLogin;
     private ImageView registerView;
     private CallbackLoginFragment callbackLoginFragment;
+
 
     @Override
     public void onAttach(Activity activity) {
@@ -47,7 +40,7 @@ public class LoginFragment extends Fragment {
         editTextMail = view.findViewById(R.id.input_email);
         editTextPassword = view.findViewById(R.id.input_password);
 
-        buttonLogin = view.findViewById(R.id.splash_screen_btn);
+        buttonLogin = view.findViewById(R.id.login_btn);
 
         registerView = view.findViewById(R.id.login_to_rView);
         clean = view.findViewById(R.id.clean_tView);

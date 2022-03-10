@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/drawable/button_shape_default.xml" value="0.17401315789473684" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/drawable/ic_back_arrow.xml" value="0.17401315789473684" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/drawable/ic_down_arrow.xml" value="0.17401315789473684" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/drawable/ic_up_arrow.xml" value="0.17401315789473684" />
@@ -16,6 +17,7 @@
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout/fragment_login.xml" value="0.2" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout/fragment_network.xml" value="0.2" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout/fragment_register.xml" value="0.2" />
+        <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout/splash_background.xml" value="0.16381578947368422" />
       </map>
     </option>
   </component>
