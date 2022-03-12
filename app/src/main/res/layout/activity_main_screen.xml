@@ -4,6 +4,127 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activities.MainScreen">
 
+    <ImageView
+        android:id="@+id/top_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="450dp"
+        android:contentDescription="@string/bubble_top"
+        android:src="@drawable/background_top"
+        app:layout_constraintBottom_toBottomOf="@+id/heart_rate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </ImageView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/heart_rate"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_marginHorizontal="50dp"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="10dp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/first_card"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_heart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/heart_beat"
+                app:layout_constraintStart_toStartOf="@id/first_card"
+                app:layout_constraintTop_toTopOf="@id/first_card">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/heart_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="85"
+                android:fontFamily="@font/firacode_semibold"
+                android:textColor="@color/app_orange"
+                android:textSize="90sp"
+                app:layout_constraintStart_toStartOf="@id/first_card"
+                app:layout_constraintTop_toBottomOf="@id/img_heart"
+
+                />
+
+            <TextView
+                android:id="@+id/heart_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Heart Rate (BPM)"
+                android:textColor="@color/app_yellow"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/firacode_light"
+                app:layout_constraintStart_toStartOf="@id/first_card"
+                app:layout_constraintBottom_toBottomOf="@id/heart_value"
+
+                />
+
+            <TextView
+                android:id="@+id/graph_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                android:text="Synus Rythm"
+                android:textColor="@color/app_yellow"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/firacode_regular"
+                app:layout_constraintStart_toStartOf="@id/first_card"
+                app:layout_constraintTop_toBottomOf="@id/heart_text"
+
+                />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/ecg_chart"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:contextClickable="false"
+                app:layout_constraintStart_toStartOf="@id/first_card"
+                app:layout_constraintTop_toBottomOf="@id/graph_text"
+
+                >
+
+            </com.github.mikephil.charting.charts.LineChart>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/bottom_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="450dp"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/background_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/heart_rate">
+
+    </ImageView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
