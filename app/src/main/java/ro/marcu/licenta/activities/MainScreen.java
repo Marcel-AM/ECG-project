@@ -1,10 +1,6 @@
 package ro.marcu.licenta.activities;
 
 import android.graphics.Color;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -29,21 +25,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import ro.marcu.licenta.R;
 
-public class MainScreen extends AppCompatActivity implements SensorEventListener {
+public class MainScreen extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseDatabase mDatabase;
     private DatabaseReference myRef;
 
     private int[] value = new int[250];
-    private List<Integer> dataValues = new ArrayList<Integer>();
 
     private int heartRate;
     private int heartRate0;
@@ -52,20 +47,17 @@ public class MainScreen extends AppCompatActivity implements SensorEventListener
     private int heartRate3;
     private int heartRateAvg;
     private long lastBeatTime;
-    private int count = 0;
+    private int count;
 
 
     private static final String TAG = "MainActivity";
-    private SensorManager mSensorManager;
-    private Sensor mAccelerometer;
-    private Sensor sensors;
 
     private LineChart mChart;
     private Thread thread;
     private boolean plotData = true;
     private boolean validateBPM = false;
 
-    private TextView readyBpm, timerText;
+    private TextView readyBpm, timerText, textBpm;
     private View backgroundBt;
 
     @Override
@@ -73,52 +65,22 @@ public class MainScreen extends AppCompatActivity implements SensorEventListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
+        lastBeatTime = 0;
+        heartRate = 70;
+        count = 0;
+
         mDatabase = FirebaseDatabase.getInstance();
         myRef = mDatabase.getReference("test/int");
 
-        //value = new int[250];
-
-        if (savedInstanceState != null) {
-            heartRate = 70;
-            lastBeatTime = 0;
-        }
-
-        //int[] aux = new int[250];
-
-        startReadingData();
-/*
-        for (Integer i: dataValues)
-        {
-            Log.d(TAG, "Value after pulling " + i);
-        }
-
-        Log.d(TAG, "Value after pulling " + dataValues.toString());
-
-
-        //Log.d(TAG, "Value after pulling " + dataValues.toString());
-
-       // addEntryECG();
+        //startReadingData();
 
         timerText = findViewById(R.id.text_timer);
         readyBpm = findViewById(R.id.text_ready);
+        textBpm = findViewById(R.id.heart_value);
         backgroundBt = findViewById(R.id.background_ready);
 
         countTimeBPM();
-/*
-        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
-        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
-
-        List<Sensor> sensors = mSensorManager.getSensorList(Sensor.TYPE_ALL);
-
-        for (int i = 0; i < sensors.size(); i++) {
-            Log.d(TAG, "onCreate: Sensor " + i + ": " + sensors.get(i).toString());
-        }
-
-        if (mAccelerometer != null) {
-            mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
-        }
-*/
         mChart = (LineChart) findViewById(R.id.ecg_chart);
 
         settingsChart();
@@ -127,8 +89,51 @@ public class MainScreen extends AppCompatActivity implements SensorEventListener
 
     }
 
+    private void feedMultiple() {
+
+        if (thread != null) {
+            thread.interrupt();
+        }
+
+        thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (true) {
+                    plotData = true;
+                    try {
+                        Thread.sleep(1000);
+                        startReadingData();
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        thread.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (thread != null) {
+            thread.interrupt();
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        thread.interrupt();
+        super.onDestroy();
+    }
+
+
     private void countTimeBPM() {
-        long duration = TimeUnit.SECONDS.toMillis(5);
+        long duration = TimeUnit.SECONDS.toMillis(10);
 
         new CountDownTimer(duration, 10) {
             @Override
@@ -139,6 +144,7 @@ public class MainScreen extends AppCompatActivity implements SensorEventListener
 
             @Override
             public void onFinish() {
+                //stabilizeBPM();
                 validateBPM = true;
                 backgroundBt.setVisibility(View.VISIBLE);
                 readyBpm.setVisibility(View.VISIBLE);
@@ -147,10 +153,34 @@ public class MainScreen extends AppCompatActivity implements SensorEventListener
         }.start();
     }
 
-    private void readEkgDataFromDatabase() {
-        mDatabase = FirebaseDatabase.getInstance();
-        myRef = mDatabase.getReference("test/int");
-
+    private void stabilizeBPM() {
+        long currentTime = Calendar.getInstance().getTimeInMillis();
+        if (lastBeatTime != 0) {
+            heartRate = (int) (heartRate + ((60000.0 / (currentTime - lastBeatTime)) / 2)) / 2;
+            if (count == 0) {
+                textBpm.setText(Integer.toString(heartRate));
+                count++;
+            }
+            if (count == 1) {
+                heartRate3 = heartRate;
+                count++;
+            }
+            if (count == 2) {
+                heartRate2 = heartRate;
+                count++;
+            }
+            if (count == 3) {
+                heartRate1 = heartRate;
+                count++;
+            }
+            if (count == 4) {
+                heartRate0 = heartRate;
+                count = 1;
+                heartRateAvg = ((heartRate0 + heartRate1 + heartRate2 + heartRate3) / 4) + 30;
+                textBpm.setText(Integer.toString(heartRateAvg));
+            }
+        }
+        lastBeatTime = currentTime;
     }
 
     private void startReadingData() {
@@ -160,12 +190,15 @@ public class MainScreen extends AppCompatActivity implements SensorEventListener
                 int i = 0;
                 for (DataSnapshot key : snapshot.getChildren()) {
                     value[i] = key.getValue(Integer.class);
-                    //aux.add(key.getValue(Integer.class));
                     i++;
                 }
-                addEntryECG(value);
-            }
 
+                if (plotData) {
+                    addEntryECG(value);
+                    stabilizeBPM();
+                    plotData = false;
+                }
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -176,9 +209,58 @@ public class MainScreen extends AppCompatActivity implements SensorEventListener
 
     }
 
-    private void insertBPMInDatabase() {
+
+    private void addEntryECG(int[] aux) {
+
+        int arr[] = new int[250];
+        Arrays.fill(arr, 0);
+
+        LineData data = mChart.getData();
+
+        if (data != null) {
+
+            ILineDataSet set = data.getDataSetByIndex(0);
+            // set.addEntry(...); // can be called as well
+
+            if (set == null) {
+                set = createSet();
+                data.addDataSet(set);
+            }
+
+            if (aux.equals(arr)) {
+                data.addEntry(new Entry(set.getEntryCount(), arr[0]), 0);
+            }
+
+            data.addEntry(new Entry(set.getEntryCount(), aux[0]), 0);
+            data.notifyDataChanged();
+
+            // let the chart know it's data has changed
+            mChart.notifyDataSetChanged();
+
+            // limit the number of visible entries
+            mChart.setVisibleXRangeMaximum(10);
+
+            // move to the latest entry
+            mChart.moveViewToX(data.getEntryCount());
+
+        }
 
     }
+
+    private LineDataSet createSet() {
+
+        LineDataSet set = new LineDataSet(null, "Dynamic Data");
+        set.setAxisDependency(YAxis.AxisDependency.LEFT);
+        set.setLineWidth(3f);
+        set.setColor(Color.RED);
+        set.setHighlightEnabled(false);
+        set.setDrawValues(false);
+        set.setDrawCircles(false);
+        set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        set.setCubicIntensity(0.2f);
+        return set;
+    }
+
 
     private void settingsChart() {
         // enable description text
@@ -231,144 +313,4 @@ public class MainScreen extends AppCompatActivity implements SensorEventListener
         mChart.setDrawBorders(false);
     }
 
-    /*
-        private void addEntry(SensorEvent event) {
-
-            LineData data = mChart.getData();
-
-            if (data != null) {
-
-                ILineDataSet set = data.getDataSetByIndex(0);
-                // set.addEntry(...); // can be called as well
-
-                if (set == null) {
-                    set = createSet();
-                    data.addDataSet(set);
-                }
-
-    //            data.addEntry(new Entry(set.getEntryCount(), (float) (Math.random() * 80) + 10f), 0);
-                data.addEntry(new Entry(set.getEntryCount(), event.values[0] + 5), 0);
-                data.notifyDataChanged();
-
-                // let the chart know it's data has changed
-                mChart.notifyDataSetChanged();
-
-                // limit the number of visible entries
-                mChart.setVisibleXRangeMaximum(100);
-                // mChart.setVisibleYRange(30, AxisDependency.LEFT);
-
-                // move to the latest entry
-                mChart.moveViewToX(data.getEntryCount());
-
-            }
-        }
-    */
-    private void addEntryECG(int[] aux) {
-
-        LineData data = mChart.getData();
-
-        if (data != null) {
-
-            ILineDataSet set = data.getDataSetByIndex(0);
-            // set.addEntry(...); // can be called as well
-
-            if (set == null) {
-                set = createSet();
-                data.addDataSet(set);
-            }
-
-//            data.addEntry(new Entry(set.getEntryCount(), (float) (Math.random() * 80) + 10f), 0);
-            data.addEntry(new Entry(set.getEntryCount(), aux[0]), 0);
-            data.notifyDataChanged();
-
-            // let the chart know it's data has changed
-            mChart.notifyDataSetChanged();
-
-            // limit the number of visible entries
-            mChart.setVisibleXRangeMaximum(100);
-            //mChart.setVisibleYRange(30, YAxis.AxisDependency.LEFT);
-
-            // move to the latest entry
-            mChart.moveViewToX(data.getEntryCount());
-
-        }
-
-    }
-
-    private LineDataSet createSet() {
-
-        LineDataSet set = new LineDataSet(null, "Dynamic Data");
-        set.setAxisDependency(YAxis.AxisDependency.LEFT);
-        set.setLineWidth(3f);
-        set.setColor(Color.RED);
-        set.setHighlightEnabled(false);
-        set.setDrawValues(false);
-        set.setDrawCircles(false);
-        set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
-        set.setCubicIntensity(0.2f);
-        return set;
-    }
-
-    private void feedMultiple() {
-
-        if (thread != null) {
-            thread.interrupt();
-        }
-
-        thread = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                while (true) {
-                    plotData = true;
-                    try {
-                        Thread.sleep(1);
-                    } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-
-        thread.start();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        if (thread != null) {
-            thread.interrupt();
-        }
-        //mSensorManager.unregisterListener(this);
-
-    }
-
-    @Override
-    public final void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // Do something here if sensor accuracy changes.
-    }
-
-    @Override
-    public final void onSensorChanged(SensorEvent event) {
-        //if (plotData) {
-        //addEntry(event);
-        //  plotData = false;
-        //}
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
-    }
-
-    @Override
-    protected void onDestroy() {
-        // mSensorManager.unregisterListener(MainScreen.this);
-        thread.interrupt();
-        super.onDestroy();
-    }
 }

@@ -47,7 +47,7 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
         setContentView(R.layout.activity_first_screen);
 
         checkInternetConnection();
-        //goToMainScreenExtra();
+        goToMainScreenExtra();
 
         mAuth = FirebaseAuth.getInstance();
 
