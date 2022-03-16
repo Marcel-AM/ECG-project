@@ -35,7 +35,7 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
 
     private FirebaseAuth mAuth;
 
-    private EditText editTextMail, editTextPassword;
+    private EditText editTextMail;
 
     private Fragment fragment;
     private FragmentManager fragmentManager;
@@ -53,7 +53,6 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
 
 
         editTextMail = findViewById(R.id.input_email);
-        editTextPassword = findViewById(R.id.input_password);
 
     }
 

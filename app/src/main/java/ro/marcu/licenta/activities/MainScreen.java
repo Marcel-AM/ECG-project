@@ -1,8 +1,11 @@
 package ro.marcu.licenta.activities;
 
+import static ro.marcu.licenta.activities.FirstScreen.INTENT_KEY_MAIL;
+
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,14 +28,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import ro.marcu.licenta.R;
+import ro.marcu.licenta.cloudData.BpmData;
 
 public class MainScreen extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseDatabase mDatabase;
@@ -49,21 +59,27 @@ public class MainScreen extends AppCompatActivity {
     private long lastBeatTime;
     private int count;
 
-
-    private static final String TAG = "MainActivity";
+    private static final SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     private LineChart mChart;
     private Thread thread;
     private boolean plotData = true;
     private boolean validateBPM = false;
 
-    private TextView readyBpm, timerText, textBpm;
+    private TextView readyBpm, timerText, textBpm, mainEmail;
     private View backgroundBt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
+
+        mainEmail = findViewById(R.id.main_email);
+
+        if (getIntent() != null) {
+            String receiveMail = getIntent().getStringExtra(INTENT_KEY_MAIL);
+            mainEmail.setText(receiveMail);
+        }
 
         lastBeatTime = 0;
         heartRate = 70;
@@ -73,7 +89,6 @@ public class MainScreen extends AppCompatActivity {
         myRef = mDatabase.getReference("test/int");
 
         //startReadingData();
-
         timerText = findViewById(R.id.text_timer);
         readyBpm = findViewById(R.id.text_ready);
         textBpm = findViewById(R.id.heart_value);
@@ -81,11 +96,42 @@ public class MainScreen extends AppCompatActivity {
 
         countTimeBPM();
 
+
+        readyBpm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                insertBPMInDatabase(mainEmail.getText().toString().trim(), textBpm.getText().toString().trim(), sdf1.format(timestamp));
+            }
+        });
+
         mChart = (LineChart) findViewById(R.id.ecg_chart);
 
         settingsChart();
 
         feedMultiple();
+
+    }
+
+    public void insertBPMInDatabase(String contactEmail, String bpm, String dateTime) {
+        BpmData data = new BpmData(contactEmail, bpm, dateTime);
+
+        Map<String, Object> dataToInsert = new HashMap<>();
+        dataToInsert.put("email", data.getEmail());
+        dataToInsert.put("bpm", data.getBpm());
+        dataToInsert.put("time", data.getDateTime());
+
+        db.collection("BPM_data")
+                .add(dataToInsert)
+                .addOnSuccessListener(documentReference -> {
+                    Log.d("destinationInserted", "success");
+                    countTimeBPM();
+                    Toast.makeText(this, "Your BPM data was sent with success !", Toast.LENGTH_SHORT).show();
+
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Your BPM data was not sent !", Toast.LENGTH_SHORT).show();
+                });
 
     }
 
@@ -134,6 +180,8 @@ public class MainScreen extends AppCompatActivity {
 
     private void countTimeBPM() {
         long duration = TimeUnit.SECONDS.toMillis(10);
+        backgroundBt.setVisibility(View.GONE);
+        readyBpm.setVisibility(View.GONE);
 
         new CountDownTimer(duration, 10) {
             @Override
@@ -184,6 +232,7 @@ public class MainScreen extends AppCompatActivity {
     }
 
     private void startReadingData() {
+
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -198,6 +247,7 @@ public class MainScreen extends AppCompatActivity {
                     stabilizeBPM();
                     plotData = false;
                 }
+
             }
 
             @Override
@@ -212,9 +262,6 @@ public class MainScreen extends AppCompatActivity {
 
     private void addEntryECG(int[] aux) {
 
-        int arr[] = new int[250];
-        Arrays.fill(arr, 0);
-
         LineData data = mChart.getData();
 
         if (data != null) {
@@ -225,10 +272,6 @@ public class MainScreen extends AppCompatActivity {
             if (set == null) {
                 set = createSet();
                 data.addDataSet(set);
-            }
-
-            if (aux.equals(arr)) {
-                data.addEntry(new Entry(set.getEntryCount(), arr[0]), 0);
             }
 
             data.addEntry(new Entry(set.getEntryCount(), aux[0]), 0);
@@ -313,4 +356,7 @@ public class MainScreen extends AppCompatActivity {
         mChart.setDrawBorders(false);
     }
 
+    @Override
+    public void onBackPressed() {
+    }
 }
