@@ -2,11 +2,13 @@ package ro.marcu.licenta.activities;
 
 import static ro.marcu.licenta.activities.FirstScreen.INTENT_KEY_MAIL;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +32,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
@@ -67,6 +68,7 @@ public class MainScreen extends AppCompatActivity {
     private boolean validateBPM = false;
 
     private TextView readyBpm, timerText, textBpm, mainEmail;
+    private ImageView bpmScreen, mainScreen, healthScreen;
     private View backgroundBt;
 
     @Override
@@ -86,7 +88,11 @@ public class MainScreen extends AppCompatActivity {
         count = 0;
 
         mDatabase = FirebaseDatabase.getInstance();
-        myRef = mDatabase.getReference("test/int");
+        myRef = mDatabase.getReference("ECGdata/NjdaLPTfQ1NU5c5uWASjK4Zredh1/readings");
+
+        bpmScreen = findViewById(R.id.bpm_bar);
+        mainScreen = findViewById(R.id.eck_chart);
+        healthScreen = findViewById(R.id.health_api);
 
         //startReadingData();
         timerText = findViewById(R.id.text_timer);
@@ -94,18 +100,18 @@ public class MainScreen extends AppCompatActivity {
         textBpm = findViewById(R.id.heart_value);
         backgroundBt = findViewById(R.id.background_ready);
 
+        mChart = (LineChart) findViewById(R.id.ecg_chart);
+
         countTimeBPM();
 
+        bpmScreen.setOnClickListener(view -> goToBPMScreen());
 
-        readyBpm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-                insertBPMInDatabase(mainEmail.getText().toString().trim(), textBpm.getText().toString().trim(), sdf1.format(timestamp));
-            }
+        healthScreen.setOnClickListener(view -> goToHealthScreen());
+
+        readyBpm.setOnClickListener(view -> {
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            insertBPMInDatabase(mainEmail.getText().toString().trim(), textBpm.getText().toString().trim(), sdf1.format(timestamp));
         });
-
-        mChart = (LineChart) findViewById(R.id.ecg_chart);
 
         settingsChart();
 
@@ -354,6 +360,16 @@ public class MainScreen extends AppCompatActivity {
         mChart.getAxisLeft().setGridColor(Color.YELLOW);
         mChart.getXAxis().setDrawGridLines(false);
         mChart.setDrawBorders(false);
+    }
+
+    private void goToBPMScreen() {
+        Intent intentGoToDashboard = new Intent(this, BPMScreen.class);
+        startActivity(intentGoToDashboard);
+    }
+
+    private void goToHealthScreen() {
+        Intent intentGoToDashboard = new Intent(this, HealthScreen.class);
+        startActivity(intentGoToDashboard);
     }
 
     @Override

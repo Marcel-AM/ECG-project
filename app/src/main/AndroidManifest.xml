@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ro.marcu.licenta" >
+    package="ro.marcu.licenta">
 
     <application
         android:allowBackup="true"
@@ -8,13 +8,19 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Licenta" >
+        android:theme="@style/Theme.Licenta">
+        <activity
+            android:name=".activities.HealthScreen"
+            android:exported="false" />
+        <activity
+            android:name=".activities.BPMScreen"
+            android:exported="false" />
         <activity
             android:name=".activities.MainScreen"
             android:exported="false" />
         <activity
             android:name=".activities.SplashScreen"
-            android:theme="@style/SplashTheme" >
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
