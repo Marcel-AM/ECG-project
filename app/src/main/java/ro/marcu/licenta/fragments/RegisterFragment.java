@@ -4,22 +4,34 @@ import static ro.marcu.licenta.fragments.LoginFragment.isValidEmail;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import com.google.android.material.slider.Slider;
 
 import ro.marcu.licenta.R;
 
 public class RegisterFragment extends Fragment {
 
+    private final String TAG = RegisterFragment.class.getSimpleName();
+
     private EditText editTextMail, editTextPasswordConfirm, editTextPassword;
+    private TextView ageDisplay;
     private Button button;
     private ImageView returnLogin;
+
+    private String genderType = null;
 
     private CallbackLoginFragment callbackLoginFragment;
 
@@ -41,9 +53,27 @@ public class RegisterFragment extends Fragment {
         editTextPassword = view.findViewById(R.id.input_password_register);
         editTextPasswordConfirm = view.findViewById(R.id.input_reEnter_password_register);
 
+        RadioGroup radioGroup = view.findViewById(R.id.radioGroup);
+        Slider priceSlider = view.findViewById(R.id.slider_age);
+
+        ageDisplay = view.findViewById(R.id.age_display);
+
         returnLogin = view.findViewById(R.id.register_to_lView);
 
         button = view.findViewById(R.id.register_btn);
+
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
+
+            RadioButton radioButton = view.findViewById(checkedId);
+
+            genderType = radioButton.getText().toString().trim();
+
+        });
+
+        priceSlider.addOnChangeListener((slider, value, fromUser) -> {
+            String ageString = String.valueOf(Math.round(value));
+            ageDisplay.setText(ageString);
+        });
 
         returnLogin.setOnClickListener(v -> goToLoginFragment());
 

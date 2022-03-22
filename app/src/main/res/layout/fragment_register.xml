@@ -11,135 +11,25 @@
         android:id="@+id/logo_register"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:layout_marginBottom="30dp"
         android:contentDescription="@string/logo"
         android:src="@drawable/logo_ecg"
-        app:layout_constraintBottom_toTopOf="@+id/password_line"
+        app:layout_constraintBottom_toTopOf="@+id/name_line"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </ImageView>
 
-    <EditText
-        android:id="@+id/input_email_register"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="@null"
-        android:fontFamily="@font/firacode_regular"
-        android:hint="@string/mail"
-        android:importantForAutofill="no"
-        android:inputType="textEmailSubject"
-        android:minHeight="48dp"
-        android:textColor="@color/app_orange"
-        android:textColorHint="@color/app_yellow"
-        android:textSize="16sp"
-
-        app:layout_constraintBottom_toTopOf="@+id/email_line"
-        app:layout_constraintEnd_toEndOf="@id/email_line"
-        app:layout_constraintStart_toStartOf="@id/email_line">
-
-    </EditText>
-
-    <EditText
-        android:id="@+id/input_password_register"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:background="@null"
-        android:fontFamily="@font/firacode_regular"
-        android:hint="@string/password"
-        android:importantForAutofill="no"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:textColor="@color/app_orange"
-        android:textColorHint="@color/app_yellow"
-        android:textSize="16sp"
-
-        app:layout_constraintEnd_toEndOf="@id/password_line"
-        app:layout_constraintStart_toStartOf="@id/password_line"
-        app:layout_constraintTop_toBottomOf="@id/logo_register">
-
-    </EditText>
-
-    <EditText
-        android:id="@+id/input_reEnter_password_register"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@null"
-        android:fontFamily="@font/firacode_regular"
-        android:hint="@string/password_confirm"
-        android:importantForAutofill="no"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:textColor="@color/app_orange"
-        android:textColorHint="@color/app_yellow"
-        android:textSize="16sp"
-
-        app:layout_constraintEnd_toEndOf="@id/password_line"
-        app:layout_constraintStart_toStartOf="@id/password_line"
-        app:layout_constraintTop_toBottomOf="@id/password_line">
-
-    </EditText>
-
-    <View
-        android:id="@+id/password_line"
-        android:layout_width="300dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/app_red"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_password_register" />
-
-    <View
-        android:id="@+id/rePassword_line"
-        android:layout_width="300dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/app_red"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_reEnter_password_register" />
-
-    <View
-        android:id="@+id/email_line"
-        android:layout_width="300dp"
-        android:layout_height="1dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/app_red"
-        app:layout_constraintBottom_toTopOf="@+id/input_password_register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/register_btn"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/app_orange"
-        android:fontFamily="@font/firacode_semibold"
-        android:text="@string/register"
-        android:textColor="@color/app_yellow"
-        app:cornerRadius="16dp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rePassword_line">
-
-    </Button>
-
     <ImageView
         android:id="@+id/register_background_img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:contentDescription="@string/logo"
         android:src="@drawable/background_bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/register_btn">
+        app:layout_constraintTop_toBottomOf="@id/slider_age">
 
     </ImageView>
 
@@ -171,6 +61,239 @@
         app:layout_constraintTop_toTopOf="@id/register_to_lView">
 
     </TextView>
+
+    <EditText
+        android:id="@+id/input_name_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@null"
+        android:fontFamily="@font/firacode_regular"
+        android:hint="Name"
+        android:importantForAutofill="no"
+        android:inputType="textEmailSubject"
+        android:textColor="@color/app_orange"
+        android:textColorHint="@color/app_yellow"
+        android:textSize="16sp"
+
+        app:layout_constraintBottom_toTopOf="@+id/name_line"
+        app:layout_constraintEnd_toEndOf="@id/name_line"
+        app:layout_constraintStart_toStartOf="@id/name_line">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/input_email_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@null"
+        android:fontFamily="@font/firacode_regular"
+        android:hint="@string/mail"
+        android:importantForAutofill="no"
+        android:inputType="textEmailSubject"
+        android:textColor="@color/app_orange"
+        android:textColorHint="@color/app_yellow"
+        android:textSize="16sp"
+
+        app:layout_constraintBottom_toTopOf="@+id/email_line"
+        app:layout_constraintEnd_toEndOf="@id/email_line"
+        app:layout_constraintStart_toStartOf="@id/email_line">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/input_password_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+
+        android:background="@null"
+        android:fontFamily="@font/firacode_regular"
+        android:hint="@string/password"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:textColor="@color/app_orange"
+        android:textColorHint="@color/app_yellow"
+        android:textSize="16sp"
+
+        app:layout_constraintEnd_toEndOf="@id/password_line"
+        app:layout_constraintStart_toStartOf="@id/password_line"
+        app:layout_constraintTop_toBottomOf="@id/email_line">
+
+    </EditText>
+
+    <EditText
+        android:id="@+id/input_reEnter_password_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@null"
+        android:fontFamily="@font/firacode_regular"
+        android:hint="@string/password_confirm"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:textColor="@color/app_orange"
+        android:textColorHint="@color/app_yellow"
+        android:textSize="16sp"
+
+        app:layout_constraintEnd_toEndOf="@id/password_line"
+        app:layout_constraintStart_toStartOf="@id/password_line"
+        app:layout_constraintTop_toBottomOf="@id/password_line">
+
+    </EditText>
+
+    <TextView
+        android:id="@+id/title_gender"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+
+        android:fontFamily="@font/firacode_light"
+        android:text="Select your gender"
+        android:textColor="@color/app_yellow"
+        android:textSize="14sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rePassword_line" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_gender">
+
+        <RadioButton
+            android:id="@+id/radioBt_man"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="25dp"
+            android:drawableStart="@drawable/man"
+            android:text="Man"
+            android:textSize="0sp" />
+
+        <RadioButton
+            android:id="@+id/radioBt_woman"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="25dp"
+            android:drawableStart="@drawable/woman"
+            android:text="Woman"
+            android:textSize="0sp" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/title_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/firacode_light"
+        android:text="Select your age"
+        android:textColor="@color/app_yellow"
+        android:textSize="14sp"
+
+        app:layout_constraintStart_toStartOf="@id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <TextView
+        android:id="@+id/age_display"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/firacode_semibold"
+        android:textColor="@color/app_yellow"
+        android:textSize="14sp"
+
+        app:layout_constraintEnd_toEndOf="@id/slider_age"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/slider_age"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:stepSize="1"
+        android:valueFrom="18"
+        android:valueTo="100"
+        app:haloColor="@color/app_orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_age"
+        app:thumbColor="@color/app_yellow"
+        app:tickColor="@color/app_yellow"
+        app:trackColor="@color/app_orange" />
+
+    <View
+        android:id="@+id/password_line"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/app_red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_password_register" />
+
+    <View
+        android:id="@+id/rePassword_line"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/app_red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_reEnter_password_register" />
+
+    <View
+        android:id="@+id/email_line"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/app_red"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_email_register" />
+
+    <View
+        android:id="@+id/name_line"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/app_red"
+        app:layout_constraintBottom_toTopOf="@+id/input_email_register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/register_btn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/app_orange"
+        android:fontFamily="@font/firacode_semibold"
+        android:text="@string/register"
+        android:textSize="14sp"
+        android:textColor="@color/app_yellow"
+        app:cornerRadius="16dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slider_age">
+
+    </Button>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

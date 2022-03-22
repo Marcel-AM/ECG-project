@@ -68,7 +68,7 @@ public class MainScreen extends AppCompatActivity {
     private boolean validateBPM = false;
 
     private TextView readyBpm, timerText, textBpm, mainEmail;
-    private ImageView bpmScreen, mainScreen, healthScreen;
+    private ImageView bpmScreen, healthScreen;
     private View backgroundBt;
 
     @Override
@@ -91,7 +91,6 @@ public class MainScreen extends AppCompatActivity {
         myRef = mDatabase.getReference("ECGdata/NjdaLPTfQ1NU5c5uWASjK4Zredh1/readings");
 
         bpmScreen = findViewById(R.id.bpm_bar);
-        mainScreen = findViewById(R.id.eck_chart);
         healthScreen = findViewById(R.id.health_api);
 
         //startReadingData();
@@ -202,7 +201,7 @@ public class MainScreen extends AppCompatActivity {
                 validateBPM = true;
                 backgroundBt.setVisibility(View.VISIBLE);
                 readyBpm.setVisibility(View.VISIBLE);
-                Toast.makeText(getApplicationContext(), "Ready to save BPM data", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Ready to save BPM data", Toast.LENGTH_LONG).show();
             }
         }.start();
     }
@@ -365,11 +364,13 @@ public class MainScreen extends AppCompatActivity {
     private void goToBPMScreen() {
         Intent intentGoToDashboard = new Intent(this, BPMScreen.class);
         startActivity(intentGoToDashboard);
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     private void goToHealthScreen() {
         Intent intentGoToDashboard = new Intent(this, HealthScreen.class);
         startActivity(intentGoToDashboard);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     @Override
