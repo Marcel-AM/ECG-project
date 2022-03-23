@@ -17,7 +17,7 @@ import ro.marcu.licenta.R;
 public class LoginFragment extends Fragment {
 
     private EditText editTextMail, editTextPassword;
-    private TextView clean;
+    private TextView clean, forgotten;
     private Button buttonLogin;
     private ImageView registerView;
     private CallbackLoginFragment callbackLoginFragment;
@@ -43,9 +43,13 @@ public class LoginFragment extends Fragment {
         buttonLogin = view.findViewById(R.id.login_btn);
 
         registerView = view.findViewById(R.id.login_to_rView);
+
         clean = view.findViewById(R.id.clean_tView);
+        forgotten = view.findViewById(R.id.forgotten_tView);
 
         registerView.setOnClickListener(v -> goToRegisterFragment());
+        forgotten.setOnClickListener(view1 -> goToForgottenFragment());
+
         clean.setOnClickListener(v -> cleanAllInput());
 
         buttonLogin.setOnClickListener(v -> {
@@ -93,6 +97,12 @@ public class LoginFragment extends Fragment {
     private void goToRegisterFragment() {
         if (callbackLoginFragment != null) {
             callbackLoginFragment.changeToRegisterFragment();
+        }
+    }
+
+    private void goToForgottenFragment() {
+        if (callbackLoginFragment != null) {
+            callbackLoginFragment.changeToForgottenFragment();
         }
     }
 

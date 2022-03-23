@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".fragments.ForgottenFragment">
+
+    <ImageView
+        android:id="@+id/right_image"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="50dp"
+        android:contentDescription="@string/bubble_top"
+        android:src="@drawable/background_reset_right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/input_email"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/left_image"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="50dp"
+        android:contentDescription="@string/bubble_top"
+        android:src="@drawable/background_reset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/input_email"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/login_image"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="20dp"
+        android:contentDescription="@string/main_logo"
+        android:src="@drawable/reset_password"
+        app:layout_constraintBottom_toTopOf="@+id/title_reset"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/title_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:fontFamily="@font/firacode_bold"
+        android:text="Forgot password?"
+        android:textColor="@color/app_red"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/text_reset"
+        app:layout_constraintEnd_toEndOf="@id/email_line"
+        app:layout_constraintStart_toStartOf="@id/email_line">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/text_reset"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:fontFamily="@font/firacode_light"
+        android:gravity="center"
+        android:text="Enter your e-mail address we'll send you an email to reset your password."
+        android:textColor="@color/app_orange"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/input_email"
+        app:layout_constraintEnd_toEndOf="@id/email_line"
+        app:layout_constraintStart_toStartOf="@id/email_line">
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/input_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@color/white"
+        android:fontFamily="@font/firacode_regular"
+        android:hint="@string/mail"
+        android:importantForAutofill="no"
+        android:inputType="textEmailSubject"
+        android:textColor="@color/app_orange"
+        android:textColorHint="@color/app_yellow"
+        android:textSize="16sp"
+
+        app:layout_constraintBottom_toTopOf="@+id/email_line"
+        app:layout_constraintEnd_toEndOf="@id/email_line"
+        app:layout_constraintStart_toStartOf="@id/email_line">
+
+    </EditText>
+
+    <View
+        android:id="@+id/email_line"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="100dp"
+        android:background="@color/app_red"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/reset_btn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/app_orange"
+        android:fontFamily="@font/firacode_semibold"
+        android:text="reset"
+        android:textColor="@color/app_yellow"
+        android:textSize="14sp"
+        app:cornerRadius="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_line">
+
+
+    </Button>
+
+    <TextView
+        android:id="@+id/reset_tView"
+        android:layout_width="9dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/firacode_light"
+        android:text="back"
+        android:textColor="@color/white"
+        android:textSize="8sp"
+        android:layout_marginStart="75dp"
+        android:layout_marginTop="105dp"
+        app:layout_constraintStart_toEndOf="@id/title_reset"
+        app:layout_constraintTop_toBottomOf="@id/reset_btn">
+
+    </TextView>
+
+    <ImageView
+        android:id="@+id/reset_to_lView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="80dp"
+        android:clickable="true"
+        android:contentDescription="@string/ic_register"
+        android:src="@drawable/ic_left_arrow"
+        app:layout_constraintStart_toEndOf="@id/title_reset"
+        app:layout_constraintTop_toBottomOf="@id/reset_btn">
+
+    </ImageView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

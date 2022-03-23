@@ -158,5 +158,24 @@
 
     </TextView>
 
+    <TextView
+        android:id="@+id/forgotten_tView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:clickable="true"
+        android:fontFamily="@font/firacode_semibold"
+        android:minHeight="50dp"
+        android:text="Forgot Password?"
+        android:textColor="@color/app_red"
+        android:textSize="11sp"
+
+
+        app:layout_constraintStart_toStartOf="@+id/login_btn"
+        app:layout_constraintTop_toBottomOf="@id/login_btn"
+        tools:ignore="TouchTargetSizeCheck">
+
+    </TextView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,9 +21,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import ro.marcu.licenta.R;
+import ro.marcu.licenta.cloudData.UserData;
 import ro.marcu.licenta.fragments.CallbackLoginFragment;
+import ro.marcu.licenta.fragments.ForgottenFragment;
 import ro.marcu.licenta.fragments.LoginFragment;
 import ro.marcu.licenta.fragments.NetworkFragment;
 import ro.marcu.licenta.fragments.RegisterFragment;
@@ -30,10 +37,11 @@ import ro.marcu.licenta.fragments.RegisterFragment;
 public class FirstScreen extends AppCompatActivity implements CallbackLoginFragment {
 
     public static final String INTENT_KEY_MAIL = "intent_key_mail";
-    public static final String SHARED_PREF_USERNAME = "username_shared_pref";
+    public static final String SHARED_PREF_EMAIL = "email_shared_pref";
     public static final String SHARED_PREF_PASSWORD = "password_shared_pref";
 
     private FirebaseAuth mAuth;
+    private FirebaseFirestore fireStore;
 
     private EditText editTextMail;
 
@@ -41,15 +49,18 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
 
+    private String userID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_screen);
 
         checkInternetConnection();
-        goToMainScreenExtra();
+        //goToMainScreenExtra();
 
         mAuth = FirebaseAuth.getInstance();
+        fireStore = FirebaseFirestore.getInstance();
 
 
         editTextMail = findViewById(R.id.input_email);
@@ -90,6 +101,17 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
         fragmentTransaction.commit();
     }
 
+    public void resetFragment() {
+        fragment = new ForgottenFragment();
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_right,
+                R.anim.slide_in_left, R.anim.slide_out_left);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.add(R.id.thePlaceholder, fragment);
+        fragmentTransaction.commit();
+    }
+
 
     @Override
     public void changeToRegisterFragment() {
@@ -102,27 +124,53 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
     }
 
     @Override
+    public void changeToForgottenFragment() {
+        resetFragment();
+    }
+
+    @Override
     public void changeToNetworkFragment() {
         networkFragment();
     }
 
     @Override
-    public void parseLoginData(String username, String password) {
-        loginUser(username, password);
+    public void parseLoginData(String email, String password) {
+        loginUser(email, password);
     }
 
     @Override
-    public void parseRegisterData(String username, String password) {
-        createUser(username, password);
+    public void parseResetData(String email) {
+        resetPassword(email);
+    }
+
+    @Override
+    public void parseRegisterData(String email, String password, String name, String gender, String age) {
+        createUser(email, password, name, gender, age);
     }
 
 
-    private void saveUser(String username, String password) {
+    private void saveUser(String email, String password) {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(SHARED_PREF_USERNAME, username);
+        editor.putString(SHARED_PREF_EMAIL, email);
         editor.putString(SHARED_PREF_PASSWORD, password);
         editor.apply();
+    }
+
+    private void resetPassword(String email) {
+        mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(FirstScreen.this, "Password reset email sent!",
+                            Toast.LENGTH_SHORT).show();
+                    loginFragment();
+                } else {
+                    Toast.makeText(FirstScreen.this, "Error in sending password reset email",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void loginUser(String email, String password) {
@@ -142,7 +190,8 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
     }
 
 
-    private void createUser(String email, String password) {
+    private void createUser(String email, String password, String name, String gender, String age) {
+
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -150,6 +199,9 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
                         if (task.isSuccessful()) {
                             Toast.makeText(FirstScreen.this, "User Created.",
                                     Toast.LENGTH_SHORT).show();
+                            userID = mAuth.getCurrentUser().getUid();
+
+                            insertUserInDatabase(name, email, gender, age);
                             loginFragment();
 
                         } else {
@@ -164,6 +216,29 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
                         }
                     }
                 });
+    }
+
+    public void insertUserInDatabase(String name, String email, String gender, String age) {
+        UserData data = new UserData(name, email, gender, age);
+
+        Map<String, Object> dataToInsert = new HashMap<>();
+        dataToInsert.put("name", data.getName());
+        dataToInsert.put("email", data.getEmail());
+        dataToInsert.put("gender", data.getGender());
+        dataToInsert.put("age", data.getAge());
+
+        fireStore.collection("Users")
+                .document(userID)
+                .set(dataToInsert)
+                .addOnSuccessListener(documentReference -> {
+                    Log.d("destinationInserted", "success");
+                    Toast.makeText(this, "Your User data was sent with success !", Toast.LENGTH_SHORT).show();
+
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Your User data was not sent !", Toast.LENGTH_SHORT).show();
+                });
+
     }
 
     private void goToMainScreenExtra() {

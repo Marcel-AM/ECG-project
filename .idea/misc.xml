@@ -7,6 +7,7 @@
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/drawable/ic_add.xml" value="0.17401315789473684" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/drawable/ic_back_arrow.xml" value="0.17401315789473684" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/drawable/ic_down_arrow.xml" value="0.17401315789473684" />
+        <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/drawable/ic_left_arrow.xml" value="0.1723127035830619" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/drawable/ic_up_arrow.xml" value="0.17401315789473684" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/drawable/shadow_rect.xml" value="0.17401315789473684" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/drawable/splash_background.xml" value="0.1723127035830619" />
@@ -20,6 +21,7 @@
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout/activity_main_screen.xml" value="0.152" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout/activity_splash_screen.xml" value="0.176" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout/content_navigation_screen.xml" value="0.16381578947368422" />
+        <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout/fragment_forgotten.xml" value="0.2" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout/fragment_login.xml" value="0.152" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout/fragment_network.xml" value="0.2" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout/fragment_register.xml" value="0.176" />

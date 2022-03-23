@@ -3,8 +3,8 @@ package ro.marcu.licenta.fragments;
 import static ro.marcu.licenta.fragments.LoginFragment.isValidEmail;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +15,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.slider.Slider;
@@ -26,10 +25,12 @@ public class RegisterFragment extends Fragment {
 
     private final String TAG = RegisterFragment.class.getSimpleName();
 
-    private EditText editTextMail, editTextPasswordConfirm, editTextPassword;
-    private TextView ageDisplay;
+    private EditText editTextName, editTextMail, editTextPasswordConfirm, editTextPassword;
+    private TextView ageDisplay, validationAge;
     private Button button;
     private ImageView returnLogin;
+    private RadioGroup radioGroup;
+    private Slider ageSlider;
 
     private String genderType = null;
 
@@ -49,14 +50,16 @@ public class RegisterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_register, container, false);
 
+        editTextName = view.findViewById(R.id.input_name_register);
         editTextMail = view.findViewById(R.id.input_email_register);
         editTextPassword = view.findViewById(R.id.input_password_register);
         editTextPasswordConfirm = view.findViewById(R.id.input_reEnter_password_register);
 
-        RadioGroup radioGroup = view.findViewById(R.id.radioGroup);
-        Slider priceSlider = view.findViewById(R.id.slider_age);
+        radioGroup = view.findViewById(R.id.radioGroup);
+        ageSlider = view.findViewById(R.id.slider_age);
 
         ageDisplay = view.findViewById(R.id.age_display);
+        validationAge = view.findViewById(R.id.title_gender);
 
         returnLogin = view.findViewById(R.id.register_to_lView);
 
@@ -70,26 +73,34 @@ public class RegisterFragment extends Fragment {
 
         });
 
-        priceSlider.addOnChangeListener((slider, value, fromUser) -> {
+        ageSlider.addOnChangeListener((slider, value, fromUser) -> {
             String ageString = String.valueOf(Math.round(value));
+            ageDisplay.setTextColor(getResources().getColor(R.color.app_orange));
             ageDisplay.setText(ageString);
         });
 
         returnLogin.setOnClickListener(v -> goToLoginFragment());
 
-        button.setOnClickListener(v -> validationInput(editTextMail, editTextPassword, editTextPasswordConfirm));
+        button.setOnClickListener(v -> validationInput(editTextName, editTextMail, editTextPassword, editTextPasswordConfirm,
+                genderType, ageDisplay));
 
         return view;
 
     }
 
-    private void validationInput(EditText editTextMail, EditText editTextPassword, EditText editTextPasswordConfirm) {
+    private void validationInput(EditText editTextName, EditText editTextMail, EditText editTextPassword, EditText editTextPasswordConfirm,
+                                 String gender, TextView ageDisplay) {
 
+        String name = editTextName.getText().toString();
         String mail = editTextMail.getText().toString();
         String password = editTextPassword.getText().toString();
         String passwordConfirm = editTextPasswordConfirm.getText().toString();
+        String age = ageDisplay.getText().toString();
 
-        if (mail.isEmpty() || !isValidEmail(mail)) {
+        if (name.isEmpty()) {
+            editTextName.setError("Name required !");
+            editTextName.requestFocus();
+        } else if (mail.isEmpty() || !isValidEmail(mail)) {
             editTextMail.setError("Email required !");
             editTextMail.requestFocus();
         } else if (password.isEmpty()) {
@@ -107,8 +118,14 @@ public class RegisterFragment extends Fragment {
         } else if (!password.equals(passwordConfirm)) {
             editTextPasswordConfirm.setError("Passwords are not equal !");
             editTextPasswordConfirm.requestFocus();
+        } else if (gender == null) {
+            validationAge.setError("Choose you gender !");
+            radioGroup.requestFocus();
+        } else if (age.equals("years")) {
+            ageDisplay.setError("Choose you age !");
+            ageSlider.requestFocus();
         } else {
-            callbackLoginFragment.parseRegisterData(mail, password);
+            callbackLoginFragment.parseRegisterData(mail, password, name, gender, age);
         }
 
     }

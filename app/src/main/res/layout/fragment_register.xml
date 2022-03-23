@@ -210,13 +210,13 @@
         android:id="@+id/age_display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
         android:fontFamily="@font/firacode_semibold"
         android:textColor="@color/app_yellow"
         android:textSize="14sp"
+        android:text="years"
 
         app:layout_constraintEnd_toEndOf="@id/slider_age"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toTopOf="@+id/title_age" />
 
     <com.google.android.material.slider.Slider
         android:id="@+id/slider_age"

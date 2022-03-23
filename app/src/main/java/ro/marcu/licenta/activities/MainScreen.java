@@ -45,7 +45,7 @@ public class MainScreen extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseFirestore fireStore;
     private FirebaseDatabase mDatabase;
     private DatabaseReference myRef;
 
@@ -87,6 +87,7 @@ public class MainScreen extends AppCompatActivity {
         heartRate = 70;
         count = 0;
 
+        fireStore = FirebaseFirestore.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
         myRef = mDatabase.getReference("ECGdata/NjdaLPTfQ1NU5c5uWASjK4Zredh1/readings");
 
@@ -126,7 +127,7 @@ public class MainScreen extends AppCompatActivity {
         dataToInsert.put("bpm", data.getBpm());
         dataToInsert.put("time", data.getDateTime());
 
-        db.collection("BPM_data")
+        fireStore.collection("BPM")
                 .add(dataToInsert)
                 .addOnSuccessListener(documentReference -> {
                     Log.d("destinationInserted", "success");
