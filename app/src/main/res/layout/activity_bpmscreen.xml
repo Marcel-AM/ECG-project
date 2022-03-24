@@ -33,6 +33,24 @@
 
     </ImageView>
 
+    <TextView
+        android:id="@+id/main_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/firacode_semibold"
+        android:gravity="center"
+        android:text="None"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone">
+
+    </TextView>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/bpm_background"
         android:layout_width="match_parent"
@@ -51,6 +69,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/test_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textSize="20sp">
+
+            </TextView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

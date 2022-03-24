@@ -23,6 +23,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,12 +45,15 @@ import ro.marcu.licenta.cloudData.BpmData;
 public class MainScreen extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+    public static final String INTENT_KEY_MAIL_MAIN = "intent_key_mail";
 
+    private FirebaseAuth mAuth;
     private FirebaseFirestore fireStore;
     private FirebaseDatabase mDatabase;
     private DatabaseReference myRef;
 
     private int[] value = new int[250];
+    private String userID;
 
     private int heartRate;
     private int heartRate0;
@@ -78,16 +82,15 @@ public class MainScreen extends AppCompatActivity {
 
         mainEmail = findViewById(R.id.main_email);
 
-        if (getIntent() != null) {
-            String receiveMail = getIntent().getStringExtra(INTENT_KEY_MAIL);
-            mainEmail.setText(receiveMail);
-        }
+        getEmail();
 
         lastBeatTime = 0;
         heartRate = 70;
         count = 0;
 
+        mAuth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
+
         mDatabase = FirebaseDatabase.getInstance();
         myRef = mDatabase.getReference("ECGdata/NjdaLPTfQ1NU5c5uWASjK4Zredh1/readings");
 
@@ -104,7 +107,7 @@ public class MainScreen extends AppCompatActivity {
 
         countTimeBPM();
 
-        bpmScreen.setOnClickListener(view -> goToBPMScreen());
+        bpmScreen.setOnClickListener(view -> goToBPMScreen(mainEmail.getText().toString().trim()));
 
         healthScreen.setOnClickListener(view -> goToHealthScreen());
 
@@ -119,16 +122,29 @@ public class MainScreen extends AppCompatActivity {
 
     }
 
-    public void insertBPMInDatabase(String contactEmail, String bpm, String dateTime) {
-        BpmData data = new BpmData(contactEmail, bpm, dateTime);
+
+    public void getEmail(){
+        if (getIntent() != null) {
+            String receiveMail = getIntent().getStringExtra(INTENT_KEY_MAIL);
+            mainEmail.setText(receiveMail);
+        }
+    }
+
+    private void insertBPMInDatabase(String contactEmail, String bpm, String dateTime) {
+
+        userID = mAuth.getCurrentUser().getUid();
+
+        BpmData data = new BpmData(bpm, dateTime);
 
         Map<String, Object> dataToInsert = new HashMap<>();
-        dataToInsert.put("email", data.getEmail());
         dataToInsert.put("bpm", data.getBpm());
-        dataToInsert.put("time", data.getDateTime());
+        dataToInsert.put("time", data.getTime());
 
         fireStore.collection("BPM")
-                .add(dataToInsert)
+                .document(userID)
+                .collection(contactEmail)
+                .document(dateTime)
+                .set(dataToInsert)
                 .addOnSuccessListener(documentReference -> {
                     Log.d("destinationInserted", "success");
                     countTimeBPM();
@@ -169,12 +185,25 @@ public class MainScreen extends AppCompatActivity {
 
     @Override
     protected void onPause() {
+        getEmail();
         super.onPause();
 
         if (thread != null) {
             thread.interrupt();
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        getEmail();
+        super.onResume();
+    }
+
+    @Override
+    protected void onRestart() {
+        getEmail();
+        super.onRestart();
     }
 
     @Override
@@ -362,8 +391,9 @@ public class MainScreen extends AppCompatActivity {
         mChart.setDrawBorders(false);
     }
 
-    private void goToBPMScreen() {
+    private void goToBPMScreen(String mailExtra) {
         Intent intentGoToDashboard = new Intent(this, BPMScreen.class);
+        intentGoToDashboard.putExtra(INTENT_KEY_MAIL_MAIN, mailExtra);
         startActivity(intentGoToDashboard);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }

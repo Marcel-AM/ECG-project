@@ -2,14 +2,26 @@ package ro.marcu.licenta.cloudData;
 
 public class BpmData {
 
-    private String email;
+    private String documentID;
     private String bpm;
-    private String dateTime;
+    private String time;
 
-    public BpmData(String email, String bpm, String dateTime) {
-        this.email = email;
+    public BpmData(){
+
+    }
+
+    public BpmData(String bpm, String time) {
+
         this.bpm = bpm;
-        this.dateTime = dateTime;
+        this.time = time;
+    }
+
+    public String getDocumentID() {
+        return documentID;
+    }
+
+    public void setDocumentID(String documentID) {
+        this.documentID = documentID;
     }
 
     public String getBpm() {
@@ -21,20 +33,12 @@ public class BpmData {
     }
 
 
-    public String getEmail() {
-        return email;
+    public String getTime() {
+        return time;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getDateTime() {
-        return dateTime;
-    }
-
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
+    public void setTime(String time) {
+        this.time = time;
     }
 
 }
