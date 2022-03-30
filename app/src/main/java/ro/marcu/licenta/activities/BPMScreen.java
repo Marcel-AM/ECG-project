@@ -1,17 +1,26 @@
 package ro.marcu.licenta.activities;
 
-import static ro.marcu.licenta.activities.MainScreen.INTENT_KEY_MAIL_MAIN;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.IMarker;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.MarkerView;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,46 +28,48 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
 
 import ro.marcu.licenta.R;
 import ro.marcu.licenta.cloudData.BpmData;
 
+
 public class BPMScreen extends AppCompatActivity {
 
     private static final String TAG = "BPMScreen";
+    private static final DecimalFormat df = new DecimalFormat("#.00");
+    private static final DecimalFormatSymbols symbols = new DecimalFormatSymbols();
 
-    private static final String KEY_BPM = "bpm";
-    private static final String KEY_TIME_STAMP = "time";
 
-    private static ArrayList<BpmData> mArrayList = new ArrayList<>();
+    private static ArrayList<Integer> auxList = new ArrayList<>();
     private static List<BpmData> dataList;
+    private static ArrayList<BarEntry> bpmList = new ArrayList<>();
+    private static ArrayList<String> timeStampList = new ArrayList<>();
 
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore fireStore;
 
     private String userID;
+    private String userEmail;
 
-    private TextView mainEmail, testText;
     private ImageView mainScreen, healthScreen;
+    private BarChart barChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bpmscreen);
 
-        mainEmail = findViewById(R.id.main_email);
-        testText = findViewById(R.id.test_text);
-
-        if (getIntent() != null) {
-            String receiveMail = getIntent().getStringExtra(INTENT_KEY_MAIL_MAIN);
-            mainEmail.setText(receiveMail);
-        }
-
         mAuth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
+
+        barChart = findViewById(R.id.barchart);
 
         mainScreen = findViewById(R.id.eck_chart);
         healthScreen = findViewById(R.id.health_api);
@@ -66,21 +77,95 @@ public class BPMScreen extends AppCompatActivity {
         mainScreen.setOnClickListener(view -> goToMainScreen());
         healthScreen.setOnClickListener(view -> goToHealthScreen());
 
+
         getBPMFromFirestore();
+
+
+    }
+
+    private void displayBarChart(ArrayList<BarEntry> bpmList) {
+
+        BarDataSet barDataSet = new BarDataSet(bpmList, "BPM");
+        barDataSet.setColor(Color.parseColor("#E83A14")); //app_orange
+        barDataSet.setValueTextSize(12f);
+
+        BarData barData = new BarData(barDataSet);
+        barData.setValueTextColor(Color.parseColor("#E52528")); //app_red
+        barData.setBarWidth(0.5f);
+
+        settingBarChart(barData);
+
+    }
+
+    private void settingBarChart(BarData barData) {
+        barChart.setFitBars(true);
+        barChart.setData(barData);
+        //barChart.invalidate();
+        //barChart.notifyDataSetChanged();
+
+
+        // enable description text
+        barChart.getDescription().setEnabled(false);
+
+
+        // enable touch gestures
+        barChart.setTouchEnabled(true);
+
+        // enable scaling and dragging
+        barChart.setDragEnabled(true);
+        barChart.setScaleEnabled(true);
+        barChart.setDrawGridBackground(false);
+
+        barChart.setMaxVisibleValueCount(100);
+
+        // if disabled, scaling can be done on x- and y-axis separately
+        barChart.setPinchZoom(false);
+
+        // set an alternative background color
+        barChart.setBackgroundColor(Color.WHITE);
+
+
+        // get the legend (only possible after setting data)
+        Legend l = barChart.getLegend();
+        l.setEnabled(false);
+
+        XAxis xl = barChart.getXAxis();
+        xl.setTextColor(Color.parseColor("#E83A14")); //app_orange
+        xl.setAxisLineColor(Color.WHITE);
+        xl.setAvoidFirstLastClipping(true);
+        //xl.setAxisMaximum(12.31f);
+        xl.setEnabled(true);
+
+        YAxis leftAxis = barChart.getAxisLeft();
+        leftAxis.setTextColor(Color.WHITE);
+        leftAxis.setAxisLineColor(Color.WHITE);
+        leftAxis.setAxisMaximum(120f);
+        leftAxis.setAxisMinimum(35f);
+
+        YAxis rightAxis = barChart.getAxisRight();
+        rightAxis.setEnabled(false);
+        rightAxis.setAxisMaximum(200f);
+
+        barChart.getAxisLeft().setDrawGridLines(true);
+        barChart.getAxisLeft().setGridColor(Color.parseColor("#D9CE3F")); //app_yellow
+        barChart.getXAxis().setDrawGridLines(true);
+        barChart.getXAxis().setGridColor(Color.parseColor("#D9CE3F")); //app_yellow
+        barChart.setDrawBorders(false);
+        barChart.animateY(2000);
     }
 
     private void getBPMFromFirestore() {
         userID = mAuth.getCurrentUser().getUid();
-        String contactEmail = mainEmail.getText().toString().trim();
+        userEmail = mAuth.getCurrentUser().getEmail();
 
         Log.d(TAG, "User: " + userID);
-        Log.d(TAG, "Email: " + contactEmail);
+        Log.d(TAG, "Email: " + userEmail);
 
         dataList = new ArrayList<>();
 
         fireStore.collection("BPM")
                 .document(userID)
-                .collection(contactEmail)
+                .collection(userEmail)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -90,45 +175,40 @@ public class BPMScreen extends AppCompatActivity {
                             return;
                         } else {
 
+                            bpmList.clear();
+                            timeStampList.clear();
+
+                            int bpmValue = 0;
+                            float timeValue = 0;
                             String aux = "";
-                            String bpm = "";
-                            String timeStamp = "";
 
                             for (QueryDocumentSnapshot documentSnapshot : documentSnapshots) {
 
                                 BpmData data = documentSnapshot.toObject(BpmData.class);
                                 data.setDocumentID(documentSnapshot.getId());
 
-                                String documentID = data.getDocumentID();
-                                aux += " ID " + documentID;
 
-                                bpm += " bpm " + data.getBpm();
-                                timeStamp += " timeStamp " + data.getTime();
+                                bpmValue = Integer.parseInt(data.getBpm());
+
+                                aux = data.getTime();
+                                timeValue = roundFloat(aux, 2);
+
+                                //timeValue = Float.parseFloat(data.getTime());
+
+
+                                timeStampList.add(data.getTime());
+
+                                bpmList.add(new BarEntry(timeValue, bpmValue));
+
                             }
 
-                            //testText.setText(aux);
-                            Log.d(TAG, "onSuccess: " + aux);
-                            Log.d(TAG, "onSuccess: " + bpm);
-                            Log.d(TAG, "onSuccess: " + timeStamp);
+                            displayBarChart(bpmList);
 
-                            /*
-                            List<DocumentSnapshot> list = documentSnapshots.getDocuments();
+                            Log.d(TAG, "Time format " + timeValue);
+                            Log.d(TAG, "onSuccess: " + bpmList);
+                            Log.d(TAG, "onSuccess: " + timeStampList);
 
-                            for(DocumentSnapshot d : list){
-                                BpmData data = d.toObject(BpmData.class);
-                                dataList.add(data);
-                            }
 
-                            Log.d(TAG, "onSuccess: " + dataList);
-                            /*
-
-                            List<BpmData> types = documentSnapshots.toObjects(BpmData.class);
-
-                            // Add all to your list
-                            mArrayList.addAll(types);
-                            Log.d(TAG, "onSuccess: " + mArrayList);
-
-                        */
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -137,21 +217,14 @@ public class BPMScreen extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Error getting data!!!", Toast.LENGTH_LONG).show();
             }
         });
-/*
-        CollectionReference coffeeRef = fireStore.collection("BPM");
-        coffeeRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (DocumentSnapshot document : task.getResult()) {
-                        String coffeeName = document.getString("coffeeName");
-                        Log.d(TAG,"Test" + coffeeName);
-                    }
-                }
-            }
-        });
-*/
 
+    }
+
+    private static float roundFloat(String f, int places) {
+
+        BigDecimal bigDecimal = new BigDecimal(f);
+        bigDecimal = bigDecimal.setScale(places, RoundingMode.HALF_UP);
+        return bigDecimal.floatValue();
     }
 
     private void goToMainScreen() {
@@ -171,4 +244,9 @@ public class BPMScreen extends AppCompatActivity {
         super.finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
+
+
 }
+
+
+

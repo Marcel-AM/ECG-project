@@ -45,7 +45,6 @@ import ro.marcu.licenta.cloudData.BpmData;
 public class MainScreen extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    public static final String INTENT_KEY_MAIL_MAIN = "intent_key_mail";
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore fireStore;
@@ -54,6 +53,7 @@ public class MainScreen extends AppCompatActivity {
 
     private int[] value = new int[250];
     private String userID;
+    private String userEmail;
 
     private int heartRate;
     private int heartRate0;
@@ -64,7 +64,7 @@ public class MainScreen extends AppCompatActivity {
     private long lastBeatTime;
     private int count;
 
-    private static final SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static final SimpleDateFormat sdf1 = new SimpleDateFormat("MM.dd");
 
     private LineChart mChart;
     private Thread thread;
@@ -103,17 +103,17 @@ public class MainScreen extends AppCompatActivity {
         textBpm = findViewById(R.id.heart_value);
         backgroundBt = findViewById(R.id.background_ready);
 
-        mChart = (LineChart) findViewById(R.id.ecg_chart);
+        mChart = findViewById(R.id.ecg_chart);
 
         countTimeBPM();
 
-        bpmScreen.setOnClickListener(view -> goToBPMScreen(mainEmail.getText().toString().trim()));
+        bpmScreen.setOnClickListener(view -> goToBPMScreen());
 
         healthScreen.setOnClickListener(view -> goToHealthScreen());
 
         readyBpm.setOnClickListener(view -> {
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            insertBPMInDatabase(mainEmail.getText().toString().trim(), textBpm.getText().toString().trim(), sdf1.format(timestamp));
+            insertBPMInDatabase(textBpm.getText().toString().trim(), sdf1.format(timestamp));
         });
 
         settingsChart();
@@ -130,9 +130,10 @@ public class MainScreen extends AppCompatActivity {
         }
     }
 
-    private void insertBPMInDatabase(String contactEmail, String bpm, String dateTime) {
+    private void insertBPMInDatabase(String bpm, String dateTime) {
 
         userID = mAuth.getCurrentUser().getUid();
+        userEmail = mAuth.getCurrentUser().getEmail();
 
         BpmData data = new BpmData(bpm, dateTime);
 
@@ -142,7 +143,7 @@ public class MainScreen extends AppCompatActivity {
 
         fireStore.collection("BPM")
                 .document(userID)
-                .collection(contactEmail)
+                .collection(userEmail)
                 .document(dateTime)
                 .set(dataToInsert)
                 .addOnSuccessListener(documentReference -> {
@@ -194,17 +195,6 @@ public class MainScreen extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        getEmail();
-        super.onResume();
-    }
-
-    @Override
-    protected void onRestart() {
-        getEmail();
-        super.onRestart();
-    }
 
     @Override
     protected void onDestroy() {
@@ -386,14 +376,13 @@ public class MainScreen extends AppCompatActivity {
 
 
         mChart.getAxisLeft().setDrawGridLines(true);
-        mChart.getAxisLeft().setGridColor(Color.YELLOW);
+        mChart.getAxisLeft().setGridColor(Color.parseColor("#D9CE3F")); //app_yellow
         mChart.getXAxis().setDrawGridLines(false);
         mChart.setDrawBorders(false);
     }
 
-    private void goToBPMScreen(String mailExtra) {
+    private void goToBPMScreen() {
         Intent intentGoToDashboard = new Intent(this, BPMScreen.class);
-        intentGoToDashboard.putExtra(INTENT_KEY_MAIL_MAIN, mailExtra);
         startActivity(intentGoToDashboard);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }

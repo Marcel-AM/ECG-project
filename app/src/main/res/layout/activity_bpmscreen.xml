@@ -20,6 +20,15 @@
 
     </ImageView>
 
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </TextView>
+
     <ImageView
         android:id="@+id/bottom_img"
         android:layout_width="match_parent"
@@ -33,30 +42,12 @@
 
     </ImageView>
 
-    <TextView
-        android:id="@+id/main_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:fontFamily="@font/firacode_semibold"
-        android:gravity="center"
-        android:text="None"
-        android:textColor="@color/white"
-        android:textSize="11sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone">
-
-    </TextView>
-
     <androidx.cardview.widget.CardView
         android:id="@+id/bpm_background"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="320dp"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="60dp"
         android:backgroundTint="@color/white"
         app:cardCornerRadius="16dp"
         app:cardElevation="10dp"
@@ -70,14 +61,58 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/test_text"
+                android:id="@+id/bar_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/firacode_regular"
+                android:text="Heart Rate (BPM)"
+                android:textColor="@color/app_yellow"
+                android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textSize="20sp">
+                app:layout_constraintTop_toTopOf="parent" />
 
-            </TextView>
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barchart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
+                tools:layout_editor_absoluteX="10dp"
+                tools:layout_editor_absoluteY="10dp">
+
+            </com.github.mikephil.charting.charts.BarChart>
+
+            <TextView
+                android:id="@+id/graph_legendX"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/firacode_light"
+                android:text="X - date (MM.DD)"
+                android:textColor="@color/app_yellow"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/barchart" />
+
+            <TextView
+                android:id="@+id/graph_legendY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/firacode_light"
+                android:text="Y - BPM (35-120)"
+                android:textColor="@color/app_yellow"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/barchart" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -166,7 +201,6 @@
 
 
     </androidx.cardview.widget.CardView>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
