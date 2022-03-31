@@ -90,8 +90,8 @@
                 android:id="@+id/graph_legendX"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
                 android:layout_marginVertical="10dp"
+                android:layout_marginStart="20dp"
                 android:fontFamily="@font/firacode_light"
                 android:text="X - date (MM.DD)"
                 android:textColor="@color/app_yellow"
@@ -104,8 +104,8 @@
                 android:id="@+id/graph_legendY"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
                 android:layout_marginVertical="10dp"
+                android:layout_marginEnd="20dp"
                 android:fontFamily="@font/firacode_light"
                 android:text="Y - BPM (35-120)"
                 android:textColor="@color/app_yellow"
@@ -137,6 +137,273 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/advice_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/firacode_regular"
+                android:text="Heart Rate Advice "
+                android:textColor="@color/app_yellow"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/user_name_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:fontFamily="@font/firacode_regular"
+                android:text="Name :"
+                android:textColor="@color/app_yellow"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/advice_title" />
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="20dp"
+                android:fontFamily="@font/firacode_semibold"
+                android:text="name"
+                android:textColor="@color/app_orange"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/user_name_title"
+                app:layout_constraintTop_toBottomOf="@+id/advice_title" />
+
+            <TextView
+                android:id="@+id/user_age_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="50dp"
+                android:fontFamily="@font/firacode_regular"
+                android:text="Age :"
+                android:textColor="@color/app_yellow"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/advice_title" />
+
+            <TextView
+                android:id="@+id/user_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="50dp"
+                android:fontFamily="@font/firacode_semibold"
+                android:text="age"
+                android:textColor="@color/app_orange"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/user_name_title"
+                app:layout_constraintTop_toBottomOf="@+id/advice_title" />
+
+            <TextView
+                android:id="@+id/user_email_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:layout_marginStart="30dp"
+                android:fontFamily="@font/firacode_regular"
+                android:text="Email :"
+                android:textColor="@color/app_yellow"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/user_name"
+                app:layout_constraintTop_toBottomOf="@+id/advice_title" />
+
+            <TextView
+                android:id="@+id/user_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="20dp"
+                android:fontFamily="@font/firacode_semibold"
+                android:text="email"
+                android:textColor="@color/app_orange"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/user_email_title"
+                app:layout_constraintTop_toBottomOf="@+id/advice_title" />
+
+            <TextView
+                android:id="@+id/user_gender_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="50dp"
+                android:layout_marginStart="30dp"
+                android:fontFamily="@font/firacode_regular"
+                android:text="Gender :"
+                android:textColor="@color/app_yellow"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/user_name"
+                app:layout_constraintTop_toBottomOf="@+id/advice_title" />
+
+            <TextView
+                android:id="@+id/user_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="50dp"
+                android:fontFamily="@font/firacode_semibold"
+                android:text="gender"
+                android:textColor="@color/app_orange"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/user_email_title"
+                app:layout_constraintTop_toBottomOf="@+id/advice_title" />
+
+            <TextView
+                android:id="@+id/recommendation_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="30dp"
+                android:fontFamily="@font/firacode_regular"
+
+                android:text="Recommendation "
+                android:textColor="@color/app_yellow"
+                android:textSize="14sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/user_age_title" />
+
+            <ImageView
+                android:id="@+id/poor_bpm_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="20dp"
+                android:src="@drawable/bpm_poor"
+                app:layout_constraintStart_toStartOf="@id/recommendation_title"
+                app:layout_constraintTop_toBottomOf="@id/recommendation_title">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/poor_bpm_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firacode_medium"
+                android:text="bpm"
+                android:textColor="@color/app_orange"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/poor_bpm_img"
+                app:layout_constraintEnd_toEndOf="@+id/poor_bpm_img"
+                app:layout_constraintStart_toStartOf="@+id/poor_bpm_img"
+                app:layout_constraintTop_toTopOf="@+id/poor_bpm_img" />
+
+            <TextView
+                android:id="@+id/poor_bpm_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/firacode_bold"
+                android:text="Poor"
+                android:textAllCaps="true"
+                android:textColor="@color/app_yellow"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/poor_bpm_img"
+                app:layout_constraintStart_toStartOf="@+id/poor_bpm_img"
+                app:layout_constraintTop_toBottomOf="@+id/poor_bpm_img" />
+
+            <ImageView
+                android:id="@+id/normal_bpm_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="20dp"
+                android:src="@drawable/bpm_normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recommendation_title">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/normal_bpm_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firacode_medium"
+                android:text="bpm"
+                android:textColor="@color/app_yellow"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/normal_bpm_img"
+                app:layout_constraintEnd_toEndOf="@+id/normal_bpm_img"
+                app:layout_constraintStart_toStartOf="@+id/normal_bpm_img"
+                app:layout_constraintTop_toTopOf="@+id/normal_bpm_img" />
+
+            <TextView
+                android:id="@+id/normal_bpm_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/firacode_bold"
+                android:text="Normal"
+                android:textAllCaps="true"
+                android:textColor="@color/app_yellow"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/normal_bpm_img"
+                app:layout_constraintStart_toStartOf="@+id/normal_bpm_img"
+                app:layout_constraintTop_toBottomOf="@+id/normal_bpm_img" />
+
+            <ImageView
+                android:id="@+id/excellent_bpm_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="20dp"
+                android:src="@drawable/bpm_excelent"
+                app:layout_constraintEnd_toEndOf="@id/recommendation_title"
+                app:layout_constraintTop_toBottomOf="@id/recommendation_title">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/excellent_bpm_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firacode_medium"
+                android:text="bpm"
+                android:textColor="@color/app_yellow"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/excellent_bpm_img"
+                app:layout_constraintEnd_toEndOf="@+id/excellent_bpm_img"
+                app:layout_constraintStart_toStartOf="@+id/excellent_bpm_img"
+                app:layout_constraintTop_toTopOf="@+id/excellent_bpm_img" />
+
+            <TextView
+                android:id="@+id/excellent_bpm_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/firacode_bold"
+                android:text="Excellent"
+                android:textAllCaps="true"
+                android:textColor="@color/app_yellow"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/excellent_bpm_img"
+                app:layout_constraintStart_toStartOf="@+id/excellent_bpm_img"
+                app:layout_constraintTop_toBottomOf="@+id/excellent_bpm_img" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

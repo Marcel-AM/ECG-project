@@ -179,7 +179,7 @@
             android:layout_height="match_parent"
             android:layout_marginHorizontal="25dp"
             android:drawableStart="@drawable/man"
-            android:text="Man"
+            android:text="man"
             android:textSize="0sp" />
 
         <RadioButton
@@ -188,7 +188,7 @@
             android:layout_height="match_parent"
             android:layout_marginHorizontal="25dp"
             android:drawableStart="@drawable/woman"
-            android:text="Woman"
+            android:text="woman"
             android:textSize="0sp" />
 
     </RadioGroup>
@@ -225,7 +225,7 @@
         android:layout_marginTop="10dp"
         android:stepSize="1"
         android:valueFrom="18"
-        android:valueTo="100"
+        android:valueTo="70"
         app:haloColor="@color/app_orange"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

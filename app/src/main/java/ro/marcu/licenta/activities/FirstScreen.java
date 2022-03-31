@@ -49,7 +49,7 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
 
-    private String userID;
+    private String userID, userEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,7 +199,9 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
                         if (task.isSuccessful()) {
                             Toast.makeText(FirstScreen.this, "User Created.",
                                     Toast.LENGTH_SHORT).show();
+
                             userID = mAuth.getCurrentUser().getUid();
+                            userEmail = mAuth.getCurrentUser().getEmail();
 
                             insertUserInDatabase(name, email, gender, age);
                             loginFragment();
@@ -229,7 +231,8 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
 
         fireStore.collection("Users")
                 .document(userID)
-                .set(dataToInsert)
+                .collection(userEmail)
+                .add(dataToInsert)
                 .addOnSuccessListener(documentReference -> {
                     Log.d("destinationInserted", "success");
                     Toast.makeText(this, "Your User data was sent with success !", Toast.LENGTH_SHORT).show();

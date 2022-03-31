@@ -7,12 +7,17 @@ public class UserData {
     private String gender;
     private String age;
 
+    public UserData(){
+
+    }
+
     public UserData(String name, String email, String gender, String age) {
         this.name = name;
         this.email = email;
         this.gender = gender;
         this.age = age;
     }
+
 
     public String getName() {
         return name;
