@@ -177,5 +177,17 @@
 
     </TextView>
 
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/progress_bar"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:indicatorName="BallPulseIndicator"
+        style="@style/AVLoadingIndicatorView.Small"
+        android:visibility="gone"
+        app:indicatorColor="@color/app_orange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgotten_tView"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,16 +1,19 @@
 package ro.marcu.licenta.activities;
 
+import static ro.marcu.licenta.activities.MainScreen.redirectActivity;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import ro.marcu.licenta.R;
 
 public class HealthScreen extends AppCompatActivity {
 
-    private ImageView bpmScreen, mainScreen;
+    private ImageButton bpmScreen, mainScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +28,12 @@ public class HealthScreen extends AppCompatActivity {
     }
 
     private void goToMainScreen() {
-        Intent intentGoToDashboard = new Intent(this, MainScreen.class);
-        startActivity(intentGoToDashboard);
+        redirectActivity(this,MainScreen.class);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     private void goToBPMScreen() {
-        Intent intentGoToDashboard = new Intent(this, BPMScreen.class);
-        startActivity(intentGoToDashboard);
+        redirectActivity(this,BPMScreen.class);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 

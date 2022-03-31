@@ -1,13 +1,16 @@
 package ro.marcu.licenta.activities;
 
-import static ro.marcu.licenta.activities.FirstScreen.INTENT_KEY_MAIL;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +26,8 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -71,18 +76,14 @@ public class MainScreen extends AppCompatActivity {
     private boolean plotData = true;
     private boolean validateBPM = false;
 
-    private TextView readyBpm, timerText, textBpm, mainEmail;
-    private ImageView bpmScreen, healthScreen;
+    private TextView readyBpm, timerText, textBpm;
+    private ImageButton bpmScreen, healthScreen, logoutBt;
     private View backgroundBt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
-
-        mainEmail = findViewById(R.id.main_email);
-
-        getEmail();
 
         lastBeatTime = 0;
         heartRate = 70;
@@ -96,6 +97,7 @@ public class MainScreen extends AppCompatActivity {
 
         bpmScreen = findViewById(R.id.bpm_bar);
         healthScreen = findViewById(R.id.health_api);
+        logoutBt = findViewById(R.id.logout_bottom);
 
         //startReadingData();
         timerText = findViewById(R.id.text_timer);
@@ -107,6 +109,7 @@ public class MainScreen extends AppCompatActivity {
 
         countTimeBPM();
 
+        logoutBt.setOnClickListener(view -> logoutAlert(MainScreen.this));
         bpmScreen.setOnClickListener(view -> goToBPMScreen());
 
         healthScreen.setOnClickListener(view -> goToHealthScreen());
@@ -122,13 +125,6 @@ public class MainScreen extends AppCompatActivity {
 
     }
 
-
-    public void getEmail(){
-        if (getIntent() != null) {
-            String receiveMail = getIntent().getStringExtra(INTENT_KEY_MAIL);
-            mainEmail.setText(receiveMail);
-        }
-    }
 
     private void insertBPMInDatabase(String bpm, String dateTime) {
 
@@ -186,7 +182,6 @@ public class MainScreen extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        getEmail();
         super.onPause();
 
         if (thread != null) {
@@ -382,15 +377,48 @@ public class MainScreen extends AppCompatActivity {
     }
 
     private void goToBPMScreen() {
-        Intent intentGoToDashboard = new Intent(this, BPMScreen.class);
-        startActivity(intentGoToDashboard);
+        redirectActivity(this,BPMScreen.class);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     private void goToHealthScreen() {
-        Intent intentGoToDashboard = new Intent(this, HealthScreen.class);
-        startActivity(intentGoToDashboard);
+        redirectActivity(this,HealthScreen.class);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    private void logoutAlert(Activity activity) {
+        //Initializare alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure you want to logout ?");
+
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                FirebaseAuth.getInstance().signOut();
+                redirectActivity(activity, FirstScreen.class);
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.show();
+    }
+
+
+    public static void redirectActivity(Activity activity, Class aClass) {
+        //Initializare Intent
+        Intent intent = new Intent(activity, aClass);
+        //Setare flag
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //Start activitate
+        activity.startActivity(intent);
     }
 
     @Override

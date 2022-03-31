@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.wang.avi.AVLoadingIndicatorView;
+
 import ro.marcu.licenta.R;
 
 public class LoginFragment extends Fragment {
@@ -21,6 +23,7 @@ public class LoginFragment extends Fragment {
     private Button buttonLogin;
     private ImageView registerView;
     private CallbackLoginFragment callbackLoginFragment;
+    private AVLoadingIndicatorView progressBar;
 
 
     @Override
@@ -41,6 +44,8 @@ public class LoginFragment extends Fragment {
         editTextPassword = view.findViewById(R.id.input_password);
 
         buttonLogin = view.findViewById(R.id.login_btn);
+        progressBar = view.findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.GONE);
 
         registerView = view.findViewById(R.id.login_to_rView);
 
@@ -81,9 +86,10 @@ public class LoginFragment extends Fragment {
             editTextPassword.requestFocus();
         } else {
             callbackLoginFragment.parseLoginData(mail, password);
+            progressBar.setVisibility(View.VISIBLE);
         }
-
     }
+
 
     private void cleanAllInput() {
 

@@ -1,10 +1,13 @@
 package ro.marcu.licenta.activities;
 
 
+import static ro.marcu.licenta.activities.MainScreen.redirectActivity;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,7 +58,7 @@ public class BPMScreen extends AppCompatActivity {
     private String auxAge;
 
 
-    private ImageView mainScreen, healthScreen;
+    private ImageButton mainScreen, healthScreen;
     private TextView nameTxt, emailTxt, ageTxt, genderTxt;
     private TextView poorTxt, normalTxt, excellentTxt;
     private BarChart barChart;
@@ -320,21 +323,22 @@ public class BPMScreen extends AppCompatActivity {
 
     private void ageConversion(String age) {
 
-        List<String> list1 = Arrays.asList("18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29");
-        List<String> list2 = Arrays.asList("30", "31", "32", "33", "34", "35", "36", "37", "38", "39");
-        List<String> list3 = Arrays.asList("40", "41", "42", "43", "44", "45", "46", "47", "48", "49");
-        List<String> list4 = Arrays.asList("50", "51", "52", "53", "54", "55", "56", "57", "58", "59");
-        List<String> list5 = Arrays.asList("60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70");
+        List<String> listAge25 = Arrays.asList("18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29");
+        List<String> listAge35 = Arrays.asList("30", "31", "32", "33", "34", "35", "36", "37", "38", "39");
+        List<String> listAge45 = Arrays.asList("40", "41", "42", "43", "44", "45", "46", "47", "48", "49");
+        List<String> listAge55 = Arrays.asList("50", "51", "52", "53", "54", "55", "56", "57", "58", "59");
+        List<String> listAge65 = Arrays.asList("60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70");
 
-        if (list1.contains(age)) {
+
+        if (listAge25.contains(age)) {
             auxAge = "25";
-        } else if (list2.contains(age)) {
+        } else if (listAge35.contains(age)) {
             auxAge = "35";
-        } else if (list3.contains(age)) {
+        } else if (listAge45.contains(age)) {
             auxAge = "45";
-        } else if (list4.contains(age)) {
+        } else if (listAge55.contains(age)) {
             auxAge = "55";
-        } else if (list5.contains(age)) {
+        } else if (listAge65.contains(age)) {
             auxAge = "65";
         } else {
             Log.d(TAG, "Error at conversion ");
@@ -344,14 +348,12 @@ public class BPMScreen extends AppCompatActivity {
     }
 
     private void goToMainScreen() {
-        Intent intentGoToDashboard = new Intent(this, MainScreen.class);
-        startActivity(intentGoToDashboard);
+        redirectActivity(this,MainScreen.class);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     private void goToHealthScreen() {
-        Intent intentGoToDashboard = new Intent(this, HealthScreen.class);
-        startActivity(intentGoToDashboard);
+        redirectActivity(this,HealthScreen.class);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 

@@ -20,22 +20,18 @@
 
     </ImageView>
 
-    <TextView
-        android:id="@+id/main_email"
-        android:layout_width="match_parent"
+    <ImageButton
+        android:id="@+id/logout_bottom"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:fontFamily="@font/firacode_semibold"
-        android:gravity="center"
-        android:text="None"
-        android:textColor="@color/white"
-        android:textSize="11sp"
+        android:layout_marginVertical="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@color/app_red"
+        android:src="@drawable/ic_logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </TextView>
+    </ImageButton>
 
     <ImageView
         android:id="@+id/bottom_img"
@@ -264,38 +260,40 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/bpm_bar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="45dp"
-                android:clickable="true"
+                android:background="@color/white"
                 android:src="@drawable/bar_graph">
 
-            </ImageView>
+            </ImageButton>
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/eck_chart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="55dp"
-                android:clickable="true"
+                android:background="@color/white"
+
                 android:src="@drawable/heartbeat_main">
 
-            </ImageView>
+            </ImageButton>
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/health_api"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginEnd="45dp"
-                android:clickable="true"
+                android:background="@color/white"
+
                 android:src="@drawable/lifestyle">
 
-            </ImageView>
+            </ImageButton>
 
         </LinearLayout>
 

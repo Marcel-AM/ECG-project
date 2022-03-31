@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,14 +38,11 @@ import ro.marcu.licenta.fragments.RegisterFragment;
 
 public class FirstScreen extends AppCompatActivity implements CallbackLoginFragment {
 
-    public static final String INTENT_KEY_MAIL = "intent_key_mail";
     public static final String SHARED_PREF_EMAIL = "email_shared_pref";
     public static final String SHARED_PREF_PASSWORD = "password_shared_pref";
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore fireStore;
-
-    private EditText editTextMail;
 
     private Fragment fragment;
     private FragmentManager fragmentManager;
@@ -62,8 +61,6 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
         mAuth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
 
-
-        editTextMail = findViewById(R.id.input_email);
 
     }
 
@@ -251,8 +248,6 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
 
     private void goToMainScreen(String mailExtra) {
         Intent intentGoToDashboard = new Intent(this, MainScreen.class);
-        intentGoToDashboard.putExtra(INTENT_KEY_MAIL, mailExtra);
-
         startActivity(intentGoToDashboard);
     }
 
