@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/drawable/button_shape_default.xml" value="0.17401315789473684" />
+        <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/drawable/custom_progress_bar.xml" value="0.17401315789473684" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/drawable/ic_add.xml" value="0.17401315789473684" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/drawable/ic_back_arrow.xml" value="0.17401315789473684" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/drawable/ic_down_arrow.xml" value="0.17401315789473684" />
@@ -15,7 +16,7 @@
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout-w936dp/activity_login.xml" value="0.19453125" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout/activity_bpmscreen.xml" value="0.2" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout/activity_first_screen.xml" value="0.16381578947368422" />
-        <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout/activity_health_screen.xml" value="0.16381578947368422" />
+        <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout/activity_health_screen.xml" value="0.2" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout/activity_login.xml" value="0.259375" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout/activity_main.xml" value="0.152" />
         <entry key="..\:/Documente/Univer/Licenta/Proiect_cod/app/src/main/res/layout/activity_main_screen.xml" value="0.152" />

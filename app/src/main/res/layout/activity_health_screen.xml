@@ -76,6 +76,199 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/steps_module"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/firacode_regular"
+                android:text="Activity module"
+                android:textColor="@color/app_yellow"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/steps_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="50dp"
+                android:fontFamily="@font/firacode_light"
+                android:text="Steps"
+                android:textColor="@color/app_yellow"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/steps_module"
+                app:layout_constraintTop_toBottomOf="@+id/steps_module" />
+
+            <TextView
+                android:id="@+id/steps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/firacode_medium"
+                android:text="0"
+                android:textColor="@color/app_orange"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/steps_module"
+                app:layout_constraintTop_toBottomOf="@+id/steps_title" />
+
+            <TextView
+                android:id="@+id/progress_percentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firacode_light"
+                android:text="%"
+                android:textColor="@color/app_orange"
+                android:textSize="11sp"
+                app:layout_constraintEnd_toEndOf="@+id/steps_progressBar"
+                app:layout_constraintBottom_toTopOf="@+id/steps_progressBar" />
+
+            <androidx.core.widget.ContentLoadingProgressBar
+                android:id="@+id/steps_progressBar"
+                android:layout_width="200dp"
+                android:layout_height="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="20dp"
+                android:progressDrawable="@drawable/custom_progress_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/steps_module">
+
+            </androidx.core.widget.ContentLoadingProgressBar>
+
+            <TextView
+                android:id="@+id/input_steps_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="50dp"
+                android:fontFamily="@font/firacode_light"
+                android:text="Target :"
+                android:textColor="@color/app_yellow"
+                android:textSize="12sp"
+                android:textStyle="bold"
+
+                app:layout_constraintEnd_toStartOf="@id/input_steps"
+                app:layout_constraintTop_toBottomOf="@+id/steps_module" />
+
+            <ImageView
+                android:id="@+id/img_kilometers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="40dp"
+                android:src="@drawable/km"
+                app:layout_constraintEnd_toStartOf="@id/kilometers"
+                app:layout_constraintStart_toStartOf="@id/steps_module"
+                app:layout_constraintTop_toBottomOf="@id/steps">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/kilometers"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/firacode_light"
+                android:text="km"
+                android:textColor="@color/app_orange"
+                android:textSize="11sp"
+                android:textStyle="bold"
+
+                app:layout_constraintBottom_toBottomOf="@id/img_kilometers"
+                app:layout_constraintEnd_toEndOf="@id/steps_module"
+                app:layout_constraintTop_toTopOf="@+id/img_kilometers" />
+
+            <ImageView
+                android:id="@+id/img_calories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="40dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/kcal"
+                app:layout_constraintEnd_toStartOf="@id/calories"
+                app:layout_constraintStart_toEndOf="@id/steps_module"
+                app:layout_constraintTop_toBottomOf="@id/steps">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/calories"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/firacode_light"
+                android:text="kcal"
+                android:textColor="@color/app_orange"
+                android:textSize="11sp"
+                android:textStyle="bold"
+
+                app:layout_constraintBottom_toBottomOf="@id/img_calories"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/img_calories" />
+
+            <EditText
+                android:id="@+id/input_steps"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="50dp"
+                android:layout_marginEnd="20dp"
+                android:background="@null"
+                android:fontFamily="@font/firacode_regular"
+                android:importantForAutofill="no"
+                android:inputType="number"
+                android:text="0"
+                android:textColor="@color/app_orange"
+                android:textColorHint="@color/app_orange"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/steps_module">
+
+            </EditText>
+
+            <Button
+                android:id="@+id/apply_target"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:backgroundTint="@color/app_yellow"
+                android:fontFamily="@font/firacode_light"
+                android:text="Apply"
+                android:textAllCaps="false"
+                android:textColor="@color/app_orange"
+                android:textSize="7sp"
+                app:cornerRadius="16dp"
+android:layout_marginVertical="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/input_steps"
+                app:layout_constraintStart_toStartOf="@+id/input_steps_title"
+                app:layout_constraintTop_toBottomOf="@+id/input_steps">
+
+            </Button>
+
+
+            <Button
+                android:id="@+id/reset_countSteps"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/app_orange"
+                android:fontFamily="@font/firacode_semibold"
+                android:text="Reset"
+                android:textColor="@color/app_yellow"
+                android:textSize="14sp"
+                app:cornerRadius="16dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_kilometers">
+
+            </Button>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

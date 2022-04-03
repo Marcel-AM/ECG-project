@@ -11,7 +11,6 @@ import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,8 +25,6 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -57,6 +54,7 @@ public class MainScreen extends AppCompatActivity {
     private DatabaseReference myRef;
 
     private int[] value = new int[250];
+    private int[] aux = new int[250];
     private String userID;
     private String userEmail;
 
@@ -74,7 +72,7 @@ public class MainScreen extends AppCompatActivity {
     private LineChart mChart;
     private Thread thread;
     private boolean plotData = true;
-    private boolean validateBPM = false;
+    private int validateSwitch = 0;
 
     private TextView readyBpm, timerText, textBpm;
     private ImageButton bpmScreen, healthScreen, logoutBt;
@@ -167,8 +165,11 @@ public class MainScreen extends AppCompatActivity {
                 while (true) {
                     plotData = true;
                     try {
+
                         Thread.sleep(1000);
                         startReadingData();
+
+
                     } catch (InterruptedException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -213,7 +214,6 @@ public class MainScreen extends AppCompatActivity {
             @Override
             public void onFinish() {
                 //stabilizeBPM();
-                validateBPM = true;
                 backgroundBt.setVisibility(View.VISIBLE);
                 readyBpm.setVisibility(View.VISIBLE);
                 //Toast.makeText(getApplicationContext(), "Ready to save BPM data", Toast.LENGTH_LONG).show();
@@ -263,8 +263,17 @@ public class MainScreen extends AppCompatActivity {
                 }
 
                 if (plotData) {
+
+                    if (validateSwitch < 1) {
+
+                        aux = value;
+                        validateSwitch++;
+
+                        Log.d(TAG, "Validate value: " + validateSwitch);
+                        //stabilizeBPM();
+                    }
+
                     addEntryECG(value);
-                    stabilizeBPM();
                     plotData = false;
                 }
 
@@ -280,7 +289,32 @@ public class MainScreen extends AppCompatActivity {
     }
 
 
-    private void addEntryECG(int[] aux) {
+    private void addEntryECG(int[] mainArray) {
+
+        if (aux == mainArray) {
+
+            textBpm.setText("0");
+
+            showingGraph(mainArray);
+
+            Log.d(TAG, "aux is equal to mainArray");
+
+            Log.d(TAG, "aux value" + aux);
+            Log.d(TAG, "mainArray value" + mainArray);
+
+        } else {
+
+            showingGraph(mainArray);
+            stabilizeBPM();
+
+            Log.d(TAG, "aux is not equal to mainArray");
+
+            Log.d(TAG, "aux value" + aux);
+            Log.d(TAG, "mainArray value" + mainArray);
+        }
+    }
+
+    private void showingGraph(int[] mainArray) {
 
         LineData data = mChart.getData();
 
@@ -294,7 +328,7 @@ public class MainScreen extends AppCompatActivity {
                 data.addDataSet(set);
             }
 
-            data.addEntry(new Entry(set.getEntryCount(), aux[0]), 0);
+            data.addEntry(new Entry(set.getEntryCount(), mainArray[0]), 0);
             data.notifyDataChanged();
 
             // let the chart know it's data has changed
@@ -306,8 +340,13 @@ public class MainScreen extends AppCompatActivity {
             // move to the latest entry
             mChart.moveViewToX(data.getEntryCount());
 
-        }
+            //aux = mainArray;
 
+            // Log.d(TAG, "aux before cloning :" + aux);
+            //Log.d(TAG, "mainArray" + mainArray);
+
+
+        }
     }
 
     private LineDataSet createSet() {
@@ -377,12 +416,12 @@ public class MainScreen extends AppCompatActivity {
     }
 
     private void goToBPMScreen() {
-        redirectActivity(this,BPMScreen.class);
+        redirectActivity(this, BPMScreen.class);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     private void goToHealthScreen() {
-        redirectActivity(this,HealthScreen.class);
+        redirectActivity(this, HealthScreen.class);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
