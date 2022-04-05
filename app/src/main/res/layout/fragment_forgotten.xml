@@ -69,7 +69,7 @@
         android:fontFamily="@font/firacode_light"
         android:gravity="center"
         android:text="Enter your e-mail address we'll send you an email to reset your password."
-        android:textColor="@color/app_orange"
+        android:textColor="@color/app_blue"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/input_email"
         app:layout_constraintEnd_toEndOf="@id/email_line"

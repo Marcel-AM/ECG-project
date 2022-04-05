@@ -211,7 +211,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/firacode_semibold"
-        android:textColor="@color/app_yellow"
+        android:textColor="@color/app_blue"
         android:textSize="14sp"
         android:text="years"
 
@@ -230,8 +230,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_age"
-        app:thumbColor="@color/app_yellow"
-        app:tickColor="@color/app_yellow"
+        app:thumbColor="@color/app_blue"
+        app:tickColor="@color/app_blue"
         app:trackColor="@color/app_orange" />
 
     <View

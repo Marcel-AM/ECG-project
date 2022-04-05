@@ -97,7 +97,7 @@
                 android:fontFamily="@font/firacode_light"
                 android:gravity="center"
                 android:text="Heart Rate (BPM)"
-                android:textColor="@color/app_yellow"
+                android:textColor="@color/app_blue"
                 android:textSize="11sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/heart_value"

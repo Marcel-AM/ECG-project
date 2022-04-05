@@ -148,7 +148,7 @@
         android:fontFamily="@font/firacode_light"
         android:minHeight="50dp"
         android:text="@string/clean"
-        android:textColor="@color/app_red"
+        android:textColor="@color/app_blue"
         android:textSize="11sp"
 
 
