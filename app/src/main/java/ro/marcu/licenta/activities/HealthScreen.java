@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,7 +54,7 @@ public class HealthScreen extends AppCompatActivity implements SensorEventListen
     private static final int PERMISSION_LOCATION_ACCESS = 200;
 
     private TextView steps, kilometers, calories, progressPercent;
-    private TextView temp, location, weatherState;
+    private TextView temp, location, weatherState, tempFeelsLike, wind, humidity;
     private EditText target;
     private Button resetSteps, applyTarget;
     private ProgressBar progressSteps;
@@ -84,6 +85,9 @@ public class HealthScreen extends AppCompatActivity implements SensorEventListen
         temp = findViewById(R.id.grade_celsius);
         location = findViewById(R.id.location_text);
         weatherState = findViewById(R.id.location_state);
+        tempFeelsLike = findViewById(R.id.location_feels_like);
+        wind = findViewById(R.id.location_wind);
+        humidity = findViewById(R.id.location_humidity);
 
         weatherIcon = (GifImageView) findViewById(R.id.weather_icon);
         target = findViewById(R.id.input_steps);
@@ -122,8 +126,8 @@ public class HealthScreen extends AppCompatActivity implements SensorEventListen
         });
 
 
-        ImageButton bpmScreen = findViewById(R.id.bpm_bar);
-        ImageButton mainScreen = findViewById(R.id.eck_chart);
+        ImageView bpmScreen = findViewById(R.id.bpm_bar);
+        ImageView mainScreen = findViewById(R.id.eck_chart);
 
         mainScreen.setOnClickListener(view -> goToMainScreen());
         bpmScreen.setOnClickListener(view -> goToBPMScreen());
@@ -263,9 +267,11 @@ public class HealthScreen extends AppCompatActivity implements SensorEventListen
             progressSteps.setProgress(steps);
 
 
-            //int percentage = ((steps + 1) * 100) / auxTarget;
+            steps = steps + 1;
 
-            //progressPercent.setText(String.valueOf(percentage) + "%");
+            int percentage = (steps * 100) / auxTarget;
+
+            progressPercent.setText(percentage + "%");
 
             Log.d(TAG, "Target: " + auxTarget);
         }
@@ -318,15 +324,9 @@ public class HealthScreen extends AppCompatActivity implements SensorEventListen
         };
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
 
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_LOCATION_ACCESS);
+
             return;
         }
 
@@ -362,6 +362,9 @@ public class HealthScreen extends AppCompatActivity implements SensorEventListen
         temp.setText(data.getTemperature());
         location.setText(data.getCity());
         weatherState.setText(data.getWeatherType());
+        tempFeelsLike.setText(data.getTempFeeling());
+        wind.setText(data.getWind());
+        humidity.setText(data.getHumidity());
 
         int getResourceID = getResources().getIdentifier(data.getIcon(), "drawable", getPackageName());
         weatherIcon.setImageResource(getResourceID);

@@ -33,18 +33,18 @@
 
     </ImageView>
 
-    <ImageView
+    <pl.droidsonroids.gif.GifImageView
         android:id="@+id/login_image"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginBottom="20dp"
         android:contentDescription="@string/main_logo"
-        android:src="@drawable/reset_password"
+        android:src="@drawable/gif_pass"
         app:layout_constraintBottom_toTopOf="@+id/title_reset"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-    </ImageView>
+    </pl.droidsonroids.gif.GifImageView>
 
     <TextView
         android:id="@+id/title_reset"
@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="20dp"
         android:fontFamily="@font/firacode_bold"
-        android:text="Forgot password?"
+        android:text="@string/forgot_title"
         android:textColor="@color/app_red"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/text_reset"
@@ -68,8 +68,8 @@
         android:layout_marginVertical="20dp"
         android:fontFamily="@font/firacode_light"
         android:gravity="center"
-        android:text="Enter your e-mail address we'll send you an email to reset your password."
-        android:textColor="@color/app_blue"
+        android:text="@string/forgot_description"
+        android:textColor="@color/app_orange"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/input_email"
         app:layout_constraintEnd_toEndOf="@id/email_line"
@@ -84,7 +84,7 @@
         android:layout_marginBottom="5dp"
         android:background="@color/white"
         android:fontFamily="@font/firacode_regular"
-        android:hint="@string/mail"
+        android:hint="@string/login_mail"
         android:importantForAutofill="no"
         android:inputType="textEmailSubject"
         android:textColor="@color/app_orange"
@@ -115,7 +115,7 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/app_orange"
         android:fontFamily="@font/firacode_semibold"
-        android:text="reset"
+        android:text="@string/forgot_reset_bt"
         android:textColor="@color/app_yellow"
         android:textSize="14sp"
         app:cornerRadius="16dp"
@@ -132,7 +132,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:fontFamily="@font/firacode_light"
-        android:text="back"
+        android:text="@string/forgot_back_title"
         android:textColor="@color/white"
         android:textSize="8sp"
         android:layout_marginStart="75dp"
@@ -148,8 +148,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="80dp"
-        android:clickable="true"
-        android:contentDescription="@string/ic_register"
+        android:contentDescription="@string/forgot_ic_back"
         android:src="@drawable/ic_left_arrow"
         app:layout_constraintStart_toEndOf="@id/title_reset"
         app:layout_constraintTop_toBottomOf="@id/reset_btn">

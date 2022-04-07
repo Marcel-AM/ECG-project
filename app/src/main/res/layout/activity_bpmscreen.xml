@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
-        android:contentDescription="@string/logo"
+        android:contentDescription="@string/network_image"
         android:src="@drawable/background_bottom_bpm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
                 android:fontFamily="@font/firacode_regular"
-                android:text="Heart Rate (BPM)"
+                android:text="@string/graph_bpm_title"
                 android:textColor="@color/app_yellow"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -93,7 +93,7 @@
                 android:layout_marginVertical="10dp"
                 android:layout_marginStart="20dp"
                 android:fontFamily="@font/firacode_light"
-                android:text="X - date (MM.DD)"
+                android:text="@string/x_date_legend"
                 android:textColor="@color/app_blue"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -107,7 +107,7 @@
                 android:layout_marginVertical="10dp"
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/firacode_light"
-                android:text="Y - BPM (35-120)"
+                android:text="@string/y_bpm_legend"
                 android:textColor="@color/app_blue"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -145,7 +145,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
                 android:fontFamily="@font/firacode_regular"
-                android:text="Heart Rate Advice "
+                android:text="@string/advice_title"
                 android:textColor="@color/app_yellow"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -159,7 +159,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="20dp"
                 android:fontFamily="@font/firacode_regular"
-                android:text="Name :"
+                android:text="@string/advice_name_user_title"
                 android:textColor="@color/app_yellow"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -173,7 +173,7 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="20dp"
                 android:fontFamily="@font/firacode_semibold"
-                android:text="name"
+                android:text="@string/advice_name_user"
                 android:textColor="@color/app_orange"
                 android:textSize="10sp"
                 android:textStyle="bold"
@@ -187,7 +187,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="50dp"
                 android:fontFamily="@font/firacode_regular"
-                android:text="Age :"
+                android:text="@string/advice_age_user_title"
                 android:textColor="@color/app_yellow"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -201,7 +201,7 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="50dp"
                 android:fontFamily="@font/firacode_semibold"
-                android:text="age"
+                android:text="@string/advice_age_user"
                 android:textColor="@color/app_orange"
                 android:textSize="10sp"
                 android:textStyle="bold"
@@ -216,7 +216,7 @@
                 android:layout_marginVertical="20dp"
                 android:layout_marginStart="30dp"
                 android:fontFamily="@font/firacode_regular"
-                android:text="Email :"
+                android:text="@string/advice_email_user_title"
                 android:textColor="@color/app_yellow"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -230,7 +230,7 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="20dp"
                 android:fontFamily="@font/firacode_semibold"
-                android:text="email"
+                android:text="@string/advice_email_user"
                 android:textColor="@color/app_orange"
                 android:textSize="10sp"
                 android:textStyle="bold"
@@ -245,7 +245,7 @@
                 android:layout_marginVertical="50dp"
                 android:layout_marginStart="30dp"
                 android:fontFamily="@font/firacode_regular"
-                android:text="Gender :"
+                android:text="@string/advice_gender_user_title"
                 android:textColor="@color/app_yellow"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -259,7 +259,7 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="50dp"
                 android:fontFamily="@font/firacode_semibold"
-                android:text="gender"
+                android:text="@string/advice_gender_user"
                 android:textColor="@color/app_orange"
                 android:textSize="10sp"
                 android:textStyle="bold"
@@ -274,7 +274,7 @@
                 android:layout_marginVertical="30dp"
                 android:fontFamily="@font/firacode_regular"
 
-                android:text="Recommendation "
+                android:text="@string/advice_recom_subtitle"
                 android:textColor="@color/app_yellow"
                 android:textSize="14sp"
                 android:textStyle="bold|italic"
@@ -283,13 +283,14 @@
 
             <ImageView
                 android:id="@+id/poor_bpm_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="20dp"
                 android:src="@drawable/bpm_poor"
                 app:layout_constraintStart_toStartOf="@id/recommendation_title"
-                app:layout_constraintTop_toBottomOf="@id/recommendation_title">
+                app:layout_constraintTop_toBottomOf="@id/recommendation_title"
+                android:contentDescription="@string/advice_ic_sport_bpm">
 
             </ImageView>
 
@@ -298,7 +299,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/firacode_medium"
-                android:text="bpm"
+                android:text="@string/advice_sport_bpm"
                 android:textColor="@color/app_orange"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -313,7 +314,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
                 android:fontFamily="@font/firacode_bold"
-                android:text="Sport"
+                android:text="@string/advice_sport_bpm_title"
                 android:textAllCaps="true"
                 android:textColor="@color/app_blue"
                 android:textSize="11sp"
@@ -324,14 +325,15 @@
 
             <ImageView
                 android:id="@+id/normal_bpm_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="20dp"
                 android:src="@drawable/bpm_normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recommendation_title">
+                app:layout_constraintTop_toBottomOf="@id/recommendation_title"
+                android:contentDescription="@string/advice_ic_normal_bpm">
 
             </ImageView>
 
@@ -340,7 +342,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/firacode_medium"
-                android:text="bpm"
+                android:text="@string/advice_normal_bpm"
                 android:textColor="@color/app_yellow"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -355,7 +357,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
                 android:fontFamily="@font/firacode_bold"
-                android:text="Normal"
+                android:text="@string/advice_normal_bpm_title"
                 android:textAllCaps="true"
                 android:textColor="@color/app_blue"
                 android:textSize="11sp"
@@ -366,13 +368,14 @@
 
             <ImageView
                 android:id="@+id/excellent_bpm_img"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="20dp"
                 android:src="@drawable/bpm_excelent"
                 app:layout_constraintEnd_toEndOf="@id/recommendation_title"
-                app:layout_constraintTop_toBottomOf="@id/recommendation_title">
+                app:layout_constraintTop_toBottomOf="@id/recommendation_title"
+                android:contentDescription="@string/advice_ic_excellent_bpm">
 
             </ImageView>
 
@@ -381,7 +384,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/firacode_medium"
-                android:text="bpm"
+                android:text="@string/advice_excellent_bpm"
                 android:textColor="@color/app_yellow"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -396,7 +399,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
                 android:fontFamily="@font/firacode_bold"
-                android:text="Excellent"
+                android:text="@string/advice_excellent_bpm_title"
                 android:textAllCaps="true"
                 android:textColor="@color/app_blue"
                 android:textSize="11sp"
@@ -431,41 +434,41 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/bpm_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="45dp"
                 android:background="@color/white"
+                android:src="@drawable/bar_graph"
+                android:contentDescription="@string/ic_bpm_screen">
 
-                android:src="@drawable/bar_graph_main">
+            </ImageView>
 
-            </ImageButton>
-
-            <ImageButton
+            <ImageView
                 android:id="@+id/eck_chart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="55dp"
                 android:background="@color/white"
+                android:src="@drawable/heartbeat"
+                android:contentDescription="@string/ic_main_screen">
 
-                android:src="@drawable/heartbeat">
+            </ImageView>
 
-            </ImageButton>
-
-            <ImageButton
+            <ImageView
                 android:id="@+id/health_api"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginEnd="45dp"
                 android:background="@color/white"
+                android:src="@drawable/lifestyle"
+                android:contentDescription="@string/ic_health_screen">
 
-                android:src="@drawable/lifestyle">
-
-            </ImageButton>
+            </ImageView>
 
         </LinearLayout>
 

@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
-        android:contentDescription="@string/logo"
+        android:contentDescription="@string/network_image"
         android:src="@drawable/background_bottom_bpm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,80 +57,187 @@
                 android:layout_height="100dp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="20dp"
-                android:src="@drawable/sunny"
+                android:src="@drawable/temperature"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/grade_celsius"
-                android:layout_width="80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/firacode_light"
-                android:text="20"
+                android:text="@string/weather_temp"
                 android:textColor="@color/app_blue"
                 android:textSize="60sp"
-                android:layout_marginStart="40dp"
-                app:layout_constraintStart_toEndOf="@id/weather_icon"
+                app:layout_constraintEnd_toStartOf="@+id/celsius_icon"
                 app:layout_constraintTop_toTopOf="@id/weather_icon"
 
                 />
+
             <pl.droidsonroids.gif.GifImageView
                 android:id="@+id/celsius_icon"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginVertical="20dp"
+                android:layout_marginEnd="30dp"
                 android:src="@drawable/def"
-                android:layout_marginEnd="20dp"
-                app:layout_constraintStart_toEndOf="@+id/grade_celsius"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/location_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firacode_medium"
+                android:text="@string/weather_state"
+                android:textColor="@color/app_orange"
+                android:textSize="12sp"
+                android:textAllCaps="true"
+                app:layout_constraintStart_toStartOf="@id/weather_icon"
+                app:layout_constraintEnd_toEndOf="@id/weather_icon"
+                app:layout_constraintTop_toTopOf="@+id/ic_location"
+                app:layout_constraintBottom_toBottomOf="@id/ic_location" />
 
             <ImageView
                 android:id="@+id/ic_location"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="10dp"
                 android:src="@drawable/location"
-                app:layout_constraintStart_toStartOf="@id/weather_icon"
-                app:layout_constraintTop_toBottomOf="@id/weather_icon" />
+                app:layout_constraintEnd_toStartOf="@+id/location_text"
+                app:layout_constraintTop_toBottomOf="@id/weather_icon"
+                android:contentDescription="@string/weather_ic_location" />
 
             <TextView
                 android:id="@+id/location_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="10dp"
-                android:fontFamily="@font/firacode_light"
-                android:text="Current location"
+                android:fontFamily="@font/firacode_medium"
+                android:text="@string/weather_location"
+                android:textColor="@color/app_red"
                 android:textSize="12sp"
-                android:textColor="@color/app_yellow"
-                app:layout_constraintStart_toEndOf="@id/ic_location"
-                app:layout_constraintTop_toTopOf="@id/ic_location"
-                app:layout_constraintBottom_toBottomOf="@id/ic_location"/>
+                app:layout_constraintEnd_toEndOf="@+id/celsius_icon"
+                app:layout_constraintBottom_toBottomOf="@id/ic_location"
+                app:layout_constraintTop_toTopOf="@id/ic_location" />
 
             <View
                 android:id="@+id/separator"
                 android:layout_width="0dp"
                 android:layout_height="5dp"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginVertical="20dp"
+                android:layout_marginVertical="10dp"
                 android:background="@drawable/view_design"
 
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ic_location" />
 
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/feels_like_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginVertical="10dp"
+                android:src="@drawable/feels_like"
+                app:layout_constraintStart_toStartOf="@id/weather_icon"
+                app:layout_constraintEnd_toStartOf="@+id/wind_icon"
+                app:layout_constraintTop_toBottomOf="@id/separator" />
+
             <TextView
-                android:id="@+id/location_state"
+                android:id="@+id/feels_like_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:fontFamily="@font/firacode_light"
-                android:text="State"
-                android:textSize="12sp"
+                android:fontFamily="@font/firacode_regular"
+                android:text="@string/weather_temp_feeling_title"
                 android:textColor="@color/app_yellow"
-                app:layout_constraintStart_toStartOf="@id/ic_location"
-                app:layout_constraintTop_toBottomOf="@id/separator"
-                />
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@id/feels_like_icon"
+                app:layout_constraintEnd_toEndOf="@id/feels_like_icon"
+                app:layout_constraintTop_toBottomOf="@id/feels_like_icon" />
+
+            <TextView
+                android:id="@+id/location_feels_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firacode_light"
+                android:text="@string/weather_temp_feeling"
+                android:textColor="@color/app_orange"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@id/feels_like_icon"
+                app:layout_constraintEnd_toEndOf="@id/feels_like_icon"
+                app:layout_constraintTop_toBottomOf="@id/feels_like_title" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/wind_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginVertical="10dp"
+                android:src="@drawable/wind"
+                app:layout_constraintStart_toEndOf="@id/feels_like_icon"
+                app:layout_constraintEnd_toStartOf="@+id/humidity_icon"
+                app:layout_constraintTop_toBottomOf="@id/separator" />
+
+            <TextView
+                android:id="@+id/wind_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/firacode_regular"
+                android:text="@string/weather_wind_title"
+                android:textColor="@color/app_yellow"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@id/wind_icon"
+                app:layout_constraintEnd_toEndOf="@id/wind_icon"
+                app:layout_constraintTop_toBottomOf="@id/wind_icon" />
+
+            <TextView
+                android:id="@+id/location_wind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firacode_light"
+                android:text="@string/weather_wind"
+                android:textColor="@color/app_orange"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@id/wind_icon"
+                app:layout_constraintEnd_toEndOf="@id/wind_icon"
+                app:layout_constraintTop_toBottomOf="@id/wind_title" />
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/humidity_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginVertical="10dp"
+                android:src="@drawable/humidity"
+                app:layout_constraintStart_toEndOf="@id/wind_icon"
+                app:layout_constraintEnd_toEndOf="@+id/celsius_icon"
+                app:layout_constraintTop_toBottomOf="@id/separator" />
+
+            <TextView
+                android:id="@+id/humidity_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/firacode_regular"
+                android:text="@string/weather_humidity_title"
+                android:textColor="@color/app_yellow"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@id/humidity_icon"
+                app:layout_constraintEnd_toEndOf="@id/humidity_icon"
+                app:layout_constraintTop_toBottomOf="@id/humidity_icon" />
+
+            <TextView
+                android:id="@+id/location_humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/firacode_light"
+                android:text="@string/weather_humidity"
+                android:textColor="@color/app_orange"
+                android:textSize="11sp"
+                app:layout_constraintStart_toStartOf="@id/humidity_icon"
+                app:layout_constraintEnd_toEndOf="@id/humidity_icon"
+                app:layout_constraintTop_toBottomOf="@id/humidity_title" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -163,7 +270,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
                 android:fontFamily="@font/firacode_regular"
-                android:text="Activity module"
+                android:text="@string/health_activity_title"
                 android:textColor="@color/app_yellow"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -176,7 +283,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="50dp"
                 android:fontFamily="@font/firacode_light"
-                android:text="Steps"
+                android:text="@string/health_steps_title"
                 android:textColor="@color/app_yellow"
                 android:textSize="12sp"
                 android:textStyle="bold"
@@ -189,7 +296,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
                 android:fontFamily="@font/firacode_medium"
-                android:text="0"
+                android:text="@string/health_steps"
                 android:textColor="@color/app_orange"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -201,7 +308,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/firacode_light"
-                android:text="%"
+                android:text="@string/health_progress"
                 android:textColor="@color/app_orange"
                 android:textSize="11sp"
                 app:layout_constraintBottom_toTopOf="@+id/steps_progressBar"
@@ -227,7 +334,7 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="50dp"
                 android:fontFamily="@font/firacode_light"
-                android:text="Target :"
+                android:text="@string/health_target_title"
                 android:textColor="@color/app_yellow"
                 android:textSize="12sp"
                 android:textStyle="bold"
@@ -237,13 +344,14 @@
 
             <ImageView
                 android:id="@+id/img_kilometers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginVertical="40dp"
-                android:src="@drawable/km"
+                android:src="@drawable/ic_km"
                 app:layout_constraintEnd_toStartOf="@id/kilometers"
                 app:layout_constraintStart_toStartOf="@id/steps_module"
-                app:layout_constraintTop_toBottomOf="@id/steps">
+                app:layout_constraintTop_toBottomOf="@id/steps"
+                android:contentDescription="@string/health_ic_km">
 
             </ImageView>
 
@@ -254,7 +362,7 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="10dp"
                 android:fontFamily="@font/firacode_light"
-                android:text="km"
+                android:text="@string/health_km"
                 android:textColor="@color/app_orange"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -265,14 +373,15 @@
 
             <ImageView
                 android:id="@+id/img_calories"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginVertical="40dp"
                 android:layout_marginStart="10dp"
-                android:src="@drawable/kcal"
+                android:src="@drawable/ic_kcal"
                 app:layout_constraintEnd_toStartOf="@id/calories"
                 app:layout_constraintStart_toEndOf="@id/steps_module"
-                app:layout_constraintTop_toBottomOf="@id/steps">
+                app:layout_constraintTop_toBottomOf="@id/steps"
+                android:contentDescription="@string/health_ic_kcal">
 
             </ImageView>
 
@@ -284,7 +393,7 @@
                 android:layout_marginVertical="10dp"
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/firacode_light"
-                android:text="kcal"
+                android:text="@string/health_kcal"
                 android:textColor="@color/app_orange"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -303,7 +412,7 @@
                 android:fontFamily="@font/firacode_regular"
                 android:importantForAutofill="no"
                 android:inputType="number"
-                android:text="0"
+                android:text="@string/health_target"
                 android:textColor="@color/app_orange"
                 android:textColorHint="@color/app_orange"
                 android:textSize="12sp"
@@ -319,7 +428,7 @@
                 android:layout_marginVertical="10dp"
                 android:backgroundTint="@color/app_yellow"
                 android:fontFamily="@font/firacode_light"
-                android:text="Apply"
+                android:text="@string/health_target_bt"
                 android:textAllCaps="false"
                 android:textColor="@color/app_orange"
                 android:textSize="7sp"
@@ -337,7 +446,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/app_orange"
                 android:fontFamily="@font/firacode_semibold"
-                android:text="Reset"
+                android:text="@string/health_steps_reset_bt"
                 android:textColor="@color/app_yellow"
                 android:textSize="14sp"
                 app:cornerRadius="16dp"
@@ -375,41 +484,44 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/bpm_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="45dp"
                 android:background="@color/white"
 
-                android:src="@drawable/bar_graph">
+                android:src="@drawable/bar_graph"
+                android:contentDescription="@string/ic_bpm_screen">
 
-            </ImageButton>
+            </ImageView>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/eck_chart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="55dp"
                 android:background="@color/white"
 
-                android:src="@drawable/heartbeat">
+                android:src="@drawable/heartbeat"
+                android:contentDescription="@string/ic_main_screen">
 
-            </ImageButton>
+            </ImageView>
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/health_api"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginEnd="45dp"
                 android:background="@color/white"
 
-                android:src="@drawable/lifestyle_main">
+                android:src="@drawable/lifestyle"
+                android:contentDescription="@string/ic_health_screen">
 
-            </ImageButton>
+            </ImageView>
 
         </LinearLayout>
 

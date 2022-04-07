@@ -12,7 +12,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginBottom="30dp"
-        android:contentDescription="@string/logo"
+        android:contentDescription="@string/network_image"
         android:src="@drawable/logo_ecg"
         app:layout_constraintBottom_toTopOf="@+id/name_line"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
         android:id="@+id/register_background_img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/logo"
+        android:contentDescription="@string/network_image"
         android:src="@drawable/background_bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,8 +37,7 @@
         android:id="@+id/register_to_lView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:contentDescription="@string/ic_login"
+        android:contentDescription="@string/register_ic_login"
         android:src="@drawable/ic_down_arrow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,10 +51,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
         android:fontFamily="@font/firacode_light"
-        android:text="login"
+        android:text="@string/register_ic_login_title"
         android:textColor="@color/white"
         android:textSize="11sp"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/register_to_lView">
@@ -69,13 +67,12 @@
         android:layout_marginBottom="5dp"
         android:background="@null"
         android:fontFamily="@font/firacode_regular"
-        android:hint="Name"
+        android:hint="@string/register_name"
         android:importantForAutofill="no"
         android:inputType="textEmailSubject"
         android:textColor="@color/app_orange"
         android:textColorHint="@color/app_yellow"
         android:textSize="16sp"
-
         app:layout_constraintBottom_toTopOf="@+id/name_line"
         app:layout_constraintEnd_toEndOf="@id/name_line"
         app:layout_constraintStart_toStartOf="@id/name_line">
@@ -89,13 +86,12 @@
         android:layout_marginBottom="5dp"
         android:background="@null"
         android:fontFamily="@font/firacode_regular"
-        android:hint="@string/mail"
+        android:hint="@string/login_mail"
         android:importantForAutofill="no"
         android:inputType="textEmailSubject"
         android:textColor="@color/app_orange"
         android:textColorHint="@color/app_yellow"
         android:textSize="16sp"
-
         app:layout_constraintBottom_toTopOf="@+id/email_line"
         app:layout_constraintEnd_toEndOf="@id/email_line"
         app:layout_constraintStart_toStartOf="@id/email_line">
@@ -108,10 +104,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="5dp"
-
         android:background="@null"
         android:fontFamily="@font/firacode_regular"
-        android:hint="@string/password"
+        android:hint="@string/login_password"
         android:importantForAutofill="no"
         android:inputType="textPassword"
         android:textColor="@color/app_orange"
@@ -131,7 +126,7 @@
         android:layout_marginTop="20dp"
         android:background="@null"
         android:fontFamily="@font/firacode_regular"
-        android:hint="@string/password_confirm"
+        android:hint="@string/register_password_confirm"
         android:importantForAutofill="no"
         android:inputType="textPassword"
         android:textColor="@color/app_orange"
@@ -151,9 +146,8 @@
         android:layout_marginHorizontal="35dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="5dp"
-
         android:fontFamily="@font/firacode_light"
-        android:text="Select your gender"
+        android:text="@string/register_gender_select_title"
         android:textColor="@color/app_yellow"
         android:textSize="14sp"
 
@@ -179,7 +173,7 @@
             android:layout_height="match_parent"
             android:layout_marginHorizontal="25dp"
             android:drawableStart="@drawable/man"
-            android:text="man"
+            android:text="@string/register_selection_man"
             android:textSize="0sp" />
 
         <RadioButton
@@ -188,7 +182,7 @@
             android:layout_height="match_parent"
             android:layout_marginHorizontal="25dp"
             android:drawableStart="@drawable/woman"
-            android:text="woman"
+            android:text="@string/register_selection_woman"
             android:textSize="0sp" />
 
     </RadioGroup>
@@ -199,10 +193,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/firacode_light"
-        android:text="Select your age"
+        android:text="@string/register_age_title"
         android:textColor="@color/app_yellow"
         android:textSize="14sp"
-
         app:layout_constraintStart_toStartOf="@id/radioGroup"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
@@ -211,10 +204,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/firacode_semibold"
-        android:textColor="@color/app_blue"
+        android:textColor="@color/app_red"
         android:textSize="14sp"
-        android:text="years"
-
+        android:text="@string/register_age"
         app:layout_constraintEnd_toEndOf="@id/slider_age"
         app:layout_constraintTop_toTopOf="@+id/title_age" />
 
@@ -282,7 +274,7 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/app_orange"
         android:fontFamily="@font/firacode_semibold"
-        android:text="@string/register"
+        android:text="@string/register_bt"
         android:textSize="14sp"
         android:textColor="@color/app_yellow"
         app:cornerRadius="16dp"

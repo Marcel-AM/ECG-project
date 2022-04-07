@@ -9,20 +9,38 @@ public class WeatherData {
     private String icon;
     private String city;
     private String weatherType;
+    private String tempFeeling;
+    private String wind;
+    private String humidity;
     private int condition;
 
     public static WeatherData fromJSON(JSONObject jsonObject) {
 
         try {
 
+            int roundedValue;
+
             WeatherData weather = new WeatherData();
             weather.city = jsonObject.getString("name");
             weather.condition = jsonObject.getJSONArray("weather").getJSONObject(0).getInt("id");
             weather.weatherType = jsonObject.getJSONArray("weather").getJSONObject(0).getString("main");
             weather.icon = updateWeatherIcon(weather.condition);
+
             double tempResult = jsonObject.getJSONObject("main").getDouble("temp") - 273.15;
-            int roundedValue = (int) Math.rint(tempResult);
+            roundedValue = (int) Math.rint(tempResult);
             weather.temperature = Integer.toString(roundedValue);
+
+            double tempFeelsResult = jsonObject.getJSONObject("main").getDouble("feels_like") - 273.15;
+            roundedValue = (int) Math.rint(tempFeelsResult);
+            weather.tempFeeling = Integer.toString(roundedValue);
+
+            int humidityValue = jsonObject.getJSONObject("main").getInt("humidity");
+            weather.humidity = Integer.toString(humidityValue);
+
+            double windValue = jsonObject.getJSONObject("wind").getDouble("speed");
+            roundedValue = (int) Math.rint(windValue);
+            weather.wind = Integer.toString(roundedValue);
+
             return weather;
 
 
@@ -58,8 +76,7 @@ public class WeatherData {
             return "snow1";
         } else if (condition == 904) {
             return "sunny";
-        }
-        else if (condition >= 905 && condition < 1000) {
+        } else if (condition >= 905 && condition < 1000) {
             return "storm";
         }
 
@@ -68,6 +85,18 @@ public class WeatherData {
 
     public String getTemperature() {
         return temperature;
+    }
+
+    public String getTempFeeling() {
+        return tempFeeling + "°C";
+    }
+
+    public String getWind() {
+        return wind + " m/s";
+    }
+
+    public String getHumidity() {
+        return humidity + "%";
     }
 
     public String getIcon() {

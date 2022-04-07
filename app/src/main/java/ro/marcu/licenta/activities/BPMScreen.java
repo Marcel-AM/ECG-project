@@ -58,7 +58,7 @@ public class BPMScreen extends AppCompatActivity {
     private String auxAge;
 
 
-    private ImageButton mainScreen, healthScreen;
+    private ImageView mainScreen, healthScreen;
     private TextView nameTxt, emailTxt, ageTxt, genderTxt;
     private TextView poorTxt, normalTxt, excellentTxt;
     private BarChart barChart;

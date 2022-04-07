@@ -11,6 +11,7 @@ import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,7 +76,7 @@ public class MainScreen extends AppCompatActivity {
     private int validateSwitch = 0;
 
     private TextView readyBpm, timerText, textBpm;
-    private ImageButton bpmScreen, healthScreen, logoutBt;
+    private ImageView bpmScreen, healthScreen, logoutBt;
     private View backgroundBt;
 
     @Override
