@@ -286,10 +286,10 @@ public class HealthScreen extends AppCompatActivity implements SensorEventListen
         int localSteps = Integer.parseInt(steps.getText().toString().trim());
 
         float km = (localSteps * 0.75f) / 1000;
-        float caloriesBurned = (localSteps * 0.05f) / 1000;
+        float caloriesBurned = localSteps * 0.03f;
 
-        resultKm = round(km, 2);
-        resultKcal = round(caloriesBurned, 2);
+        resultKm = round(km, 1);
+        resultKcal = round(caloriesBurned, 0);
 
 
         kilometers.setText(String.valueOf(resultKm));

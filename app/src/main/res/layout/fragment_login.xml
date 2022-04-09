@@ -7,6 +7,7 @@
     android:background="@color/white"
     tools:context=".fragments.LoginFragment">
 
+
     <ImageView
         android:id="@+id/top_image"
         android:layout_width="match_parent"
@@ -19,6 +20,10 @@
         app:layout_constraintStart_toStartOf="parent">
 
     </ImageView>
+
+
+
+
 
     <ImageView
         android:id="@+id/login_image"
@@ -99,13 +104,13 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/app_orange"
         android:fontFamily="@font/firacode_semibold"
-        android:textSize="14sp"
         android:text="@string/login_bt"
         android:textColor="@color/app_yellow"
+        android:textSize="14sp"
         app:cornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_line" >
+        app:layout_constraintTop_toBottomOf="@+id/description_line">
 
 
     </Button>
@@ -133,6 +138,7 @@
         android:contentDescription="@string/login_ic_register"
         android:src="@drawable/ic_up_arrow"
         app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -176,15 +182,15 @@
 
     <com.wang.avi.AVLoadingIndicatorView
         android:id="@+id/progress_bar"
+        style="@style/AVLoadingIndicatorView.Small"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        app:indicatorName="BallPulseIndicator"
-        style="@style/AVLoadingIndicatorView.Small"
         android:visibility="gone"
         app:indicatorColor="@color/app_orange"
-        app:layout_constraintStart_toStartOf="parent"
+        app:indicatorName="BallPulseIndicator"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forgotten_tView"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/forgotten_tView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

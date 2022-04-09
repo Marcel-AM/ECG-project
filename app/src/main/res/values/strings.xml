@@ -1,60 +1,17 @@
 <resources>
     <string name="app_name">ECG</string>
-    <string name="nume_autor">Axentii Marcel</string>
-    <string name="email_autor">marcel.axentii@mail.ru</string>
-    <string name="home_item">Home</string>
-    <string name="about_us_item">About</string>
-    <string name="contact_item">Contact</string>
-    <string name="share_item">Share</string>
-    <string name="logout_item">LOG OUT</string>
-    <string name="submit">add</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="rate_the_trip">Rate the trip :</string>
-    <string name="textBox_end_date">End date</string>
-    <string name="textBox_start_date">Start date</string>
-    <string name="textView_value">(EUR)</string>
-    <string name="textView_select_the_price">Select the Price :</string>
-    <string name="title_trip_type">Select Trip Type :</string>
-    <string name="editText_destination">Destination</string>
-    <string name="editText_trip_name">Trip Name</string>
-    <string name="title_new_trip">New Trip</string>
-    <string name="bt_save">Save</string>
+
     <string name="login_mail">Email</string>
     <string name="login_password">Password</string>
     <string name="login_bt">Login</string>
     <string name="login_register_title">register</string>
     <string name="login_clean">Clean all</string>
-    <string name="forgot">Forgot Password ?</string>
-    <string name="warning">Introduceti un email valid !</string>
-    <string name="danger">Completati toate casutele !</string>
-    <string name="network_image">logo</string>
-    <string name="register_password_confirm">Re-enter password</string>
-    <string name="register_bt">Register</string>
-    <string name="return_to_LoginScreen">Return to sign in</string>
-    <string name="pass_invalid">Ati introdus parole diferite</string>
-    <string name="about_travel_J">  A travel journal is a place to plan and organize your trips, write about your experiences, and add paper mementos from the trip. Use it to write about memories large and small, who you met along the journey, and what you learned.</string>
-    <string name="contact_lastMessage">Nice to meet you, we will chat soon.</string>
-    <string name="bt_returnHome">Take me back home</string>
-    <string name="warning_temp">We need a existent city for temp !</string>
-    <string name="title_temp">Temperature in this destination :</string>
-    <string name="title_update">Update Trip</string>
-    <string name="bt_update">Update</string>
+    <string name="login_forgotten_txt">Forgot Password?</string>
+    <string name="login_ic_register">Register</string>
+
     <string name="bubble_top">Bubble top</string>
     <string name="bubble_bottom">Bubble bottom</string>
-    <string name="main_logo">Logo</string>
-    <string name="login_ic_register">Register</string>
-    <string name="register_ic_login">Back to login</string>
-    <string name="title_activity_navigation_screen">NavigationScreen</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
     <string name="graph_bpm_title">Heart Rate (BPM)</string>
     <string name="x_date_legend">X - date (MM.DD)</string>
     <string name="y_bpm_legend">Y - BPM (35-120)</string>
@@ -74,6 +31,11 @@
     <string name="advice_normal_bpm_title">Normal</string>
     <string name="advice_excellent_bpm">bpm</string>
     <string name="advice_excellent_bpm_title">Excellent</string>
+    <string name="advice_ic_sport_bpm">ic_sport_bpm</string>
+    <string name="advice_ic_normal_bpm">ic_normal_bpm</string>
+    <string name="advice_ic_excellent_bpm">ic_excellent_bpm</string>
+
+    <string name="weather_ic_location">ic_location</string>
     <string name="weather_temp">--</string>
     <string name="weather_state">State</string>
     <string name="weather_location">Current location</string>
@@ -83,6 +45,7 @@
     <string name="weather_wind">--</string>
     <string name="weather_humidity_title">Humidity</string>
     <string name="weather_humidity">--</string>
+
     <string name="health_activity_title">Activity module</string>
     <string name="health_steps_title">Steps</string>
     <string name="health_steps">0</string>
@@ -95,13 +58,12 @@
     <string name="health_steps_reset_bt">Reset</string>
     <string name="health_ic_km">ic_km</string>
     <string name="health_ic_kcal">ic_kcal</string>
+
     <string name="ic_bpm_screen">ic_bpm_screen</string>
     <string name="ic_main_screen">ic_main_screen</string>
     <string name="ic_health_screen">ic_health_screen</string>
-    <string name="weather_ic_location">ic_location</string>
-    <string name="advice_ic_sport_bpm">ic_sport_bpm</string>
-    <string name="advice_ic_normal_bpm">ic_normal_bpm</string>
-    <string name="advice_ic_excellent_bpm">ic_excellent_bpm</string>
+
+    <string name="main_logo">Logo</string>
     <string name="main_ic_logout">ic_logout</string>
     <string name="main_ic_heart_beat">ic_heart_beat</string>
     <string name="main_bpm">--</string>
@@ -110,15 +72,21 @@
     <string name="main_timer_txt">5 sec. to the end ...</string>
     <string name="main_ic_add_time">ic_add_time</string>
     <string name="main_timer_ready">Ready to save</string>
+
     <string name="forgot_title">Forgot password?</string>
     <string name="forgot_description">Enter your e-mail address we\'ll send you an email to reset your password.</string>
     <string name="forgot_reset_bt">reset</string>
     <string name="forgot_back_title">back</string>
     <string name="forgot_ic_back">ic_back</string>
-    <string name="login_forgotten_txt">Forgot Password?</string>
+
     <string name="network_title">No Internet Conection</string>
     <string name="network_description">Check your Internet Connection and Try Again</string>
     <string name="network_bt">Try Again</string>
+    <string name="network_image">logo</string>
+
+    <string name="register_ic_login">Back to login</string>
+    <string name="register_password_confirm">Re-enter password</string>
+    <string name="register_bt">Register</string>
     <string name="register_ic_login_title">login</string>
     <string name="register_name">Name</string>
     <string name="register_gender_select_title">Select your gender</string>
@@ -126,4 +94,9 @@
     <string name="register_selection_woman">woman</string>
     <string name="register_age_title">Select your age</string>
     <string name="register_age">years</string>
+
+    <string name="english">English</string>
+    <string name="romanian">Romanian</string>
+    <string name="english_logo">english_logo</string>
+    <string name="romanian_logo">romanian_logo</string>
 </resources>

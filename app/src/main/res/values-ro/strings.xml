@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ECG</string>
+
+    <string name="login_mail">Email</string>
+    <string name="login_password">Parola</string>
+    <string name="login_bt">Logare</string>
+    <string name="login_register_title">inregistrare</string>
+    <string name="login_clean">Sterge</string>
+    <string name="login_forgotten_txt">Ai uitat parola?</string>
+    <string name="login_ic_register">Înregistrare</string>
+
+    <string name="bubble_top">Bubble top</string>
+    <string name="bubble_bottom">Bubble bottom</string>
+
+    <string name="graph_bpm_title">Ritm cardiac (BPM)</string>
+    <string name="x_date_legend">X - ddata (LL.ZZ)</string>
+    <string name="y_bpm_legend">Y - BPM (35-120)</string>
+    <string name="advice_title">Recomandări (BPM)</string>
+    <string name="advice_name_user_title">Nume :</string>
+    <string name="advice_name_user">nume</string>
+    <string name="advice_age_user_title">Ani :</string>
+    <string name="advice_age_user">ani</string>
+    <string name="advice_email_user_title">Email :</string>
+    <string name="advice_email_user">email</string>
+    <string name="advice_gender_user_title">Gen :</string>
+    <string name="advice_gender_user">gen</string>
+    <string name="advice_recom_subtitle">Recomandări</string>
+    <string name="advice_sport_bpm">bpm</string>
+    <string name="advice_sport_bpm_title">Sport</string>
+    <string name="advice_normal_bpm">bpm</string>
+    <string name="advice_normal_bpm_title">Normal</string>
+    <string name="advice_excellent_bpm">bpm</string>
+    <string name="advice_excellent_bpm_title">Excelent</string>
+    <string name="advice_ic_sport_bpm">ic_sport_bpm</string>
+    <string name="advice_ic_normal_bpm">ic_normal_bpm</string>
+    <string name="advice_ic_excellent_bpm">ic_excelent_bpm</string>
+
+    <string name="weather_ic_location">ic_locatie</string>
+    <string name="weather_temp">--</string>
+    <string name="weather_state">Stare</string>
+    <string name="weather_location">Locația curentă</string>
+    <string name="weather_temp_feeling_title">Se simte ca</string>
+    <string name="weather_temp_feeling">--</string>
+    <string name="weather_wind_title">Vânt</string>
+    <string name="weather_wind">--</string>
+    <string name="weather_humidity_title">Umiditate</string>
+    <string name="weather_humidity">--</string>
+
+    <string name="health_activity_title">Mudulul de activitate</string>
+    <string name="health_steps_title">Pași</string>
+    <string name="health_steps">0</string>
+    <string name="health_progress">%</string>
+    <string name="health_target_title">Țintă :</string>
+    <string name="health_km">km</string>
+    <string name="health_kcal">kcal</string>
+    <string name="health_target">0</string>
+    <string name="health_target_bt">Aplică</string>
+    <string name="health_steps_reset_bt">Resetează</string>
+    <string name="health_ic_km">ic_km</string>
+    <string name="health_ic_kcal">ic_kcal</string>
+
+    <string name="ic_bpm_screen">ic_bpm_screen</string>
+    <string name="ic_main_screen">ic_main_screen</string>
+    <string name="ic_health_screen">ic_health_screen</string>
+
+    <string name="main_logo">Logo</string>
+    <string name="main_ic_logout">ic_logout</string>
+    <string name="main_ic_heart_beat">ic_heart_beat</string>
+    <string name="main_bpm">--</string>
+    <string name="main_bpm_title">Ritm cardiac (BPM)</string>
+    <string name="main_graph_title">Ritmul sinusal</string>
+    <string name="main_timer_txt">5 sec. pană la final ...</string>
+    <string name="main_ic_add_time">ic_add_time</string>
+    <string name="main_timer_ready">Salvează</string>
+
+    <string name="forgot_title">Ai uitat parola?</string>
+    <string name="forgot_description">Înserează emailul si noi\îți vom trimite un email pentru resetare.</string>
+    <string name="forgot_reset_bt">resetează</string>
+    <string name="forgot_back_title">înapoi</string>
+    <string name="forgot_ic_back">ic_back</string>
+
+    <string name="network_title">Fără conexiune la internet</string>
+    <string name="network_description">Verifică conexiunea la internet și încearcă din nou</string>
+    <string name="network_bt">Încearcă</string>
+    <string name="network_image">logo</string>
+
+    <string name="register_ic_login">Înapoi la logare</string>
+    <string name="register_password_confirm">Reintrodu parola</string>
+    <string name="register_bt">Înregistrare</string>
+    <string name="register_ic_login_title">logare</string>
+    <string name="register_name">Nume</string>
+    <string name="register_gender_select_title">Selectează genul tău</string>
+    <string name="register_selection_man">man</string>
+    <string name="register_selection_woman">woman</string>
+    <string name="register_age_title">Alegeți vărsta</string>
+    <string name="register_age">ani</string>
+
+    <string name="english">Engleza</string>
+    <string name="romanian">Româna</string>
+</resources>
