@@ -9,17 +9,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -47,8 +42,10 @@ import java.util.concurrent.TimeUnit;
 
 import ro.marcu.licenta.R;
 import ro.marcu.licenta.cloudData.BpmData;
+import ro.marcu.licenta.languages.AppCompat;
+import ro.marcu.licenta.languages.LanguageManager;
 
-public class MainScreen extends AppCompatActivity {
+public class MainScreen extends AppCompat {
 
     private static final String TAG = "MainActivity";
 
@@ -79,7 +76,7 @@ public class MainScreen extends AppCompatActivity {
     private int validateSwitch = 0;
 
     private TextView readyBpm, timerText, textBpm;
-    private ImageView bpmScreen, healthScreen, logoutBt;
+    private ImageView bpmScreen, healthScreen, logoutBt, englishLang, romanianLang;
     private View backgroundBt;
 
     @Override
@@ -100,6 +97,9 @@ public class MainScreen extends AppCompatActivity {
         bpmScreen = findViewById(R.id.bpm_bar);
         healthScreen = findViewById(R.id.health_api);
         logoutBt = findViewById(R.id.logout_bottom);
+
+        englishLang = findViewById(R.id.english_logo);
+        romanianLang = findViewById(R.id.romanian_logo);
 
         //startReadingData();
         timerText = findViewById(R.id.text_timer);
@@ -125,6 +125,22 @@ public class MainScreen extends AppCompatActivity {
 
         feedMultiple();
 
+        LanguageManager manager = new LanguageManager(this);
+
+        englishLang.setOnClickListener(view -> {
+            manager.updateResource("en");
+            recreate();
+
+            Toast.makeText(this, "The language has changed !", Toast.LENGTH_SHORT).show();
+        });
+
+        romanianLang.setOnClickListener(view -> {
+            manager.updateResource("ro");
+            recreate();
+
+            Toast.makeText(this, "Limba s-a schimbat !", Toast.LENGTH_SHORT).show();
+        });
+
     }
 
 
@@ -147,11 +163,11 @@ public class MainScreen extends AppCompatActivity {
                 .addOnSuccessListener(documentReference -> {
                     Log.d("destinationInserted", "success");
                     countTimeBPM();
-                    Toast.makeText(this, "Your BPM data was sent with success !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.success_insert_bpm, Toast.LENGTH_SHORT).show();
 
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Your BPM data was not sent !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.failure_insert_bpm, Toast.LENGTH_SHORT).show();
                 });
 
     }
@@ -212,7 +228,8 @@ public class MainScreen extends AppCompatActivity {
             @Override
             public void onTick(long l) {
                 String sDuration = String.format(Locale.ENGLISH, "%01d", TimeUnit.MILLISECONDS.toSeconds(l));
-                timerText.setText(sDuration + " sec. to the end ...");
+                String text = getString(R.string.main_timer_txt);
+                timerText.setText(sDuration + " " + text);
             }
 
             @Override
@@ -430,13 +447,13 @@ public class MainScreen extends AppCompatActivity {
     }
 
     private void logoutAlert(Activity activity) {
-        //Initializare alert dialog
+        //Initialize alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
-        builder.setTitle("Logout");
-        builder.setMessage("Are you sure you want to logout ?");
+        builder.setTitle(R.string.logout_title);
+        builder.setMessage(R.string.logout_txt);
 
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.logout_yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseAuth.getInstance().signOut();
@@ -444,7 +461,7 @@ public class MainScreen extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.logout_no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

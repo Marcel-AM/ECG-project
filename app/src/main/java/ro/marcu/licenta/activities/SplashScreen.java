@@ -6,7 +6,9 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class SplashScreen extends AppCompatActivity {
+import ro.marcu.licenta.languages.AppCompat;
+
+public class SplashScreen extends AppCompat {
 
     private final Handler mWaitHandler = new Handler();
 

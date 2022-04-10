@@ -90,24 +90,24 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/firacode_medium"
                 android:text="@string/weather_state"
+                android:textAllCaps="true"
                 android:textColor="@color/app_orange"
                 android:textSize="12sp"
-                android:textAllCaps="true"
-                app:layout_constraintStart_toStartOf="@id/weather_icon"
+                app:layout_constraintBottom_toBottomOf="@id/ic_location"
                 app:layout_constraintEnd_toEndOf="@id/weather_icon"
-                app:layout_constraintTop_toTopOf="@+id/ic_location"
-                app:layout_constraintBottom_toBottomOf="@id/ic_location" />
+                app:layout_constraintStart_toStartOf="@id/weather_icon"
+                app:layout_constraintTop_toTopOf="@+id/ic_location" />
 
             <ImageView
                 android:id="@+id/ic_location"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginVertical="10dp"
                 android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="10dp"
+                android:contentDescription="@string/weather_ic_location"
                 android:src="@drawable/location"
                 app:layout_constraintEnd_toStartOf="@+id/location_text"
-                app:layout_constraintTop_toBottomOf="@id/weather_icon"
-                android:contentDescription="@string/weather_ic_location" />
+                app:layout_constraintTop_toBottomOf="@id/weather_icon" />
 
             <TextView
                 android:id="@+id/location_text"
@@ -118,8 +118,8 @@
                 android:text="@string/weather_location"
                 android:textColor="@color/app_red"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/celsius_icon"
                 app:layout_constraintBottom_toBottomOf="@id/ic_location"
+                app:layout_constraintEnd_toEndOf="@+id/celsius_icon"
                 app:layout_constraintTop_toTopOf="@id/ic_location" />
 
             <View
@@ -140,8 +140,8 @@
                 android:layout_height="50dp"
                 android:layout_marginVertical="10dp"
                 android:src="@drawable/feels_like"
-                app:layout_constraintStart_toStartOf="@id/weather_icon"
                 app:layout_constraintEnd_toStartOf="@+id/wind_icon"
+                app:layout_constraintStart_toStartOf="@id/weather_icon"
                 app:layout_constraintTop_toBottomOf="@id/separator" />
 
             <TextView
@@ -153,8 +153,8 @@
                 android:text="@string/weather_temp_feeling_title"
                 android:textColor="@color/app_yellow"
                 android:textSize="11sp"
-                app:layout_constraintStart_toStartOf="@id/feels_like_icon"
                 app:layout_constraintEnd_toEndOf="@id/feels_like_icon"
+                app:layout_constraintStart_toStartOf="@id/feels_like_icon"
                 app:layout_constraintTop_toBottomOf="@id/feels_like_icon" />
 
             <TextView
@@ -165,8 +165,8 @@
                 android:text="@string/weather_temp_feeling"
                 android:textColor="@color/app_orange"
                 android:textSize="11sp"
-                app:layout_constraintStart_toStartOf="@id/feels_like_icon"
                 app:layout_constraintEnd_toEndOf="@id/feels_like_icon"
+                app:layout_constraintStart_toStartOf="@id/feels_like_icon"
                 app:layout_constraintTop_toBottomOf="@id/feels_like_title" />
 
             <pl.droidsonroids.gif.GifImageView
@@ -175,8 +175,8 @@
                 android:layout_height="50dp"
                 android:layout_marginVertical="10dp"
                 android:src="@drawable/wind"
-                app:layout_constraintStart_toEndOf="@id/feels_like_icon"
                 app:layout_constraintEnd_toStartOf="@+id/humidity_icon"
+                app:layout_constraintStart_toEndOf="@id/feels_like_icon"
                 app:layout_constraintTop_toBottomOf="@id/separator" />
 
             <TextView
@@ -188,8 +188,8 @@
                 android:text="@string/weather_wind_title"
                 android:textColor="@color/app_yellow"
                 android:textSize="11sp"
-                app:layout_constraintStart_toStartOf="@id/wind_icon"
                 app:layout_constraintEnd_toEndOf="@id/wind_icon"
+                app:layout_constraintStart_toStartOf="@id/wind_icon"
                 app:layout_constraintTop_toBottomOf="@id/wind_icon" />
 
             <TextView
@@ -200,8 +200,8 @@
                 android:text="@string/weather_wind"
                 android:textColor="@color/app_orange"
                 android:textSize="11sp"
-                app:layout_constraintStart_toStartOf="@id/wind_icon"
                 app:layout_constraintEnd_toEndOf="@id/wind_icon"
+                app:layout_constraintStart_toStartOf="@id/wind_icon"
                 app:layout_constraintTop_toBottomOf="@id/wind_title" />
 
             <pl.droidsonroids.gif.GifImageView
@@ -210,8 +210,8 @@
                 android:layout_height="50dp"
                 android:layout_marginVertical="10dp"
                 android:src="@drawable/humidity"
-                app:layout_constraintStart_toEndOf="@id/wind_icon"
                 app:layout_constraintEnd_toEndOf="@+id/celsius_icon"
+                app:layout_constraintStart_toEndOf="@id/wind_icon"
                 app:layout_constraintTop_toBottomOf="@id/separator" />
 
             <TextView
@@ -223,8 +223,8 @@
                 android:text="@string/weather_humidity_title"
                 android:textColor="@color/app_yellow"
                 android:textSize="11sp"
-                app:layout_constraintStart_toStartOf="@id/humidity_icon"
                 app:layout_constraintEnd_toEndOf="@id/humidity_icon"
+                app:layout_constraintStart_toStartOf="@id/humidity_icon"
                 app:layout_constraintTop_toBottomOf="@id/humidity_icon" />
 
             <TextView
@@ -235,8 +235,8 @@
                 android:text="@string/weather_humidity"
                 android:textColor="@color/app_orange"
                 android:textSize="11sp"
-                app:layout_constraintStart_toStartOf="@id/humidity_icon"
                 app:layout_constraintEnd_toEndOf="@id/humidity_icon"
+                app:layout_constraintStart_toStartOf="@id/humidity_icon"
                 app:layout_constraintTop_toBottomOf="@id/humidity_title" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -347,11 +347,11 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginVertical="40dp"
+                android:contentDescription="@string/health_ic_km"
                 android:src="@drawable/ic_km"
                 app:layout_constraintEnd_toStartOf="@id/kilometers"
                 app:layout_constraintStart_toStartOf="@id/steps_module"
-                app:layout_constraintTop_toBottomOf="@id/steps"
-                android:contentDescription="@string/health_ic_km">
+                app:layout_constraintTop_toBottomOf="@id/steps">
 
             </ImageView>
 
@@ -368,7 +368,8 @@
                 android:textStyle="bold"
 
                 app:layout_constraintBottom_toBottomOf="@id/img_kilometers"
-                app:layout_constraintEnd_toEndOf="@id/steps_module"
+                app:layout_constraintEnd_toStartOf="@+id/img_calories"
+                app:layout_constraintStart_toEndOf="@id/img_kilometers"
                 app:layout_constraintTop_toTopOf="@+id/img_kilometers" />
 
             <ImageView
@@ -376,12 +377,11 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginVertical="40dp"
-                android:layout_marginStart="10dp"
+                android:contentDescription="@string/health_ic_kcal"
                 android:src="@drawable/ic_kcal"
                 app:layout_constraintEnd_toStartOf="@id/calories"
-                app:layout_constraintStart_toEndOf="@id/steps_module"
-                app:layout_constraintTop_toBottomOf="@id/steps"
-                android:contentDescription="@string/health_ic_kcal">
+                app:layout_constraintStart_toEndOf="@id/kilometers"
+                app:layout_constraintTop_toBottomOf="@id/steps">
 
             </ImageView>
 
@@ -391,7 +391,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginVertical="10dp"
-                android:layout_marginEnd="20dp"
                 android:fontFamily="@font/firacode_light"
                 android:text="@string/health_kcal"
                 android:textColor="@color/app_orange"
@@ -400,6 +399,7 @@
 
                 app:layout_constraintBottom_toBottomOf="@id/img_calories"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_calories"
                 app:layout_constraintTop_toTopOf="@+id/img_calories" />
 
             <EditText
@@ -492,8 +492,8 @@
                 android:layout_marginStart="45dp"
                 android:background="@color/white"
 
-                android:src="@drawable/bar_graph"
-                android:contentDescription="@string/ic_bpm_screen">
+                android:contentDescription="@string/ic_bpm_screen"
+                android:src="@drawable/bar_graph">
 
             </ImageView>
 
@@ -505,8 +505,8 @@
                 android:layout_marginHorizontal="55dp"
                 android:background="@color/white"
 
-                android:src="@drawable/heartbeat"
-                android:contentDescription="@string/ic_main_screen">
+                android:contentDescription="@string/ic_main_screen"
+                android:src="@drawable/heartbeat">
 
             </ImageView>
 
@@ -518,8 +518,8 @@
                 android:layout_marginEnd="45dp"
                 android:background="@color/white"
 
-                android:src="@drawable/lifestyle"
-                android:contentDescription="@string/ic_health_screen">
+                android:contentDescription="@string/ic_health_screen"
+                android:src="@drawable/lifestyle">
 
             </ImageView>
 

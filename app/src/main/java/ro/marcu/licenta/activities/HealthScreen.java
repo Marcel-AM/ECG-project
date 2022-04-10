@@ -40,8 +40,9 @@ import cz.msebera.android.httpclient.Header;
 import pl.droidsonroids.gif.GifImageView;
 import ro.marcu.licenta.R;
 import ro.marcu.licenta.api.WeatherData;
+import ro.marcu.licenta.languages.AppCompat;
 
-public class HealthScreen extends AppCompatActivity implements SensorEventListener {
+public class HealthScreen extends AppCompat implements SensorEventListener {
 
     private static final String TAG = "HealthScreen";
 
@@ -114,6 +115,7 @@ public class HealthScreen extends AppCompatActivity implements SensorEventListen
                 previousTotalSteps = totalSteps;
 
                 saveData();
+                recreate();
             }
         });
 
@@ -342,8 +344,6 @@ public class HealthScreen extends AppCompatActivity implements SensorEventListen
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
 
-                Toast.makeText(HealthScreen.this, "Data get success", Toast.LENGTH_SHORT).show();
-
                 WeatherData weather = WeatherData.fromJSON(response);
                 updateUI(weather);
                 //super.onSuccess(statusCode, headers, response);
@@ -352,7 +352,7 @@ public class HealthScreen extends AppCompatActivity implements SensorEventListen
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
 
-                Toast.makeText(HealthScreen.this, "Fail to get data !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HealthScreen.this, R.string.weather_failed, Toast.LENGTH_SHORT).show();
                 //super.onFailure(statusCode, headers, responseString, throwable);
             }
         });
@@ -384,7 +384,7 @@ public class HealthScreen extends AppCompatActivity implements SensorEventListen
                 //Toast.makeText(HealthScreen.this, "Permission granted, thank you !", Toast.LENGTH_SHORT).show();
                 stepsRunning = true;
             } else {
-                Toast.makeText(HealthScreen.this, "I need this permission for counting the steps !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HealthScreen.this, R.string.health_permission, Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -393,7 +393,7 @@ public class HealthScreen extends AppCompatActivity implements SensorEventListen
                 //Toast.makeText(HealthScreen.this, "Permission granted, thank you !", Toast.LENGTH_SHORT).show();
                 getWeatherForCurrentLocation();
             } else {
-                Toast.makeText(HealthScreen.this, "I need this permission for weather !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HealthScreen.this, R.string.weather_permission, Toast.LENGTH_SHORT).show();
             }
         }
 

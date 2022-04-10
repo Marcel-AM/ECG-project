@@ -3,20 +3,32 @@
     <string name="app_name">ECG</string>
 
     <string name="login_mail">Email</string>
-    <string name="login_password">Parola</string>
+    <string name="login_password">Parolă</string>
     <string name="login_bt">Logare</string>
-    <string name="login_register_title">inregistrare</string>
-    <string name="login_clean">Sterge</string>
+    <string name="login_register_title">înregistrare</string>
+    <string name="login_clean">Șterge</string>
     <string name="login_forgotten_txt">Ai uitat parola?</string>
     <string name="login_ic_register">Înregistrare</string>
+    <string name="login_failure">Credențiale greșite SAU Conexiune inthernet rea</string>
+
+    <string name="logout_title">Delogare</string>
+    <string name="logout_txt">Ești convins că dorești să te deloghezi ?</string>
+    <string name="logout_yes">Da</string>
+    <string name="logout_no">Nu</string>
+
+    <string name="success_insert_bpm">Datele dvs. BPM au fost trimise cu succes !</string>
+    <string name="failure_insert_bpm">Datele dvs. BPM nu au fost trimise cu succes !</string>
+
+    <string name="success_reset_mail_sent">E-mail de resetare a parolei trimis !</string>
+    <string name="failure_reset_mail_sent">Eroare la trimiterea e-mailului de resetare a parolei !</string>
 
     <string name="bubble_top">Bubble top</string>
     <string name="bubble_bottom">Bubble bottom</string>
 
     <string name="graph_bpm_title">Ritm cardiac (BPM)</string>
-    <string name="x_date_legend">X - ddata (LL.ZZ)</string>
-    <string name="y_bpm_legend">Y - BPM (35-120)</string>
-    <string name="advice_title">Recomandări (BPM)</string>
+    <string name="x_date_legend">X - data (LL.ZZ)</string>
+    <string name="y_bpm_legend">Y – BPM (35–120)</string>
+    <string name="advice_title">Utilizatorul</string>
     <string name="advice_name_user_title">Nume :</string>
     <string name="advice_name_user">nume</string>
     <string name="advice_age_user_title">Ani :</string>
@@ -46,6 +58,8 @@
     <string name="weather_wind">--</string>
     <string name="weather_humidity_title">Umiditate</string>
     <string name="weather_humidity">--</string>
+    <string name="weather_failed">Eșuarea obținerii datelor meteo !</string>
+    <string name="weather_permission">Permisiune necesară pentru afișarea datelor meteo !</string>
 
     <string name="health_activity_title">Mudulul de activitate</string>
     <string name="health_steps_title">Pași</string>
@@ -59,6 +73,7 @@
     <string name="health_steps_reset_bt">Resetează</string>
     <string name="health_ic_km">ic_km</string>
     <string name="health_ic_kcal">ic_kcal</string>
+    <string name="health_permission">Permisiune necesară pentru numărarea pașilor !</string>
 
     <string name="ic_bpm_screen">ic_bpm_screen</string>
     <string name="ic_main_screen">ic_main_screen</string>
@@ -69,24 +84,24 @@
     <string name="main_ic_heart_beat">ic_heart_beat</string>
     <string name="main_bpm">--</string>
     <string name="main_bpm_title">Ritm cardiac (BPM)</string>
-    <string name="main_graph_title">Ritmul sinusal</string>
-    <string name="main_timer_txt">5 sec. pană la final ...</string>
+    <string name="main_graph_title">Ritmul sinusoidal</string>
+    <string name="main_timer_txt"> sec. pană la final …</string>
     <string name="main_ic_add_time">ic_add_time</string>
     <string name="main_timer_ready">Salvează</string>
 
     <string name="forgot_title">Ai uitat parola?</string>
-    <string name="forgot_description">Înserează emailul si noi\îți vom trimite un email pentru resetare.</string>
+    <string name="forgot_description">Înserează emailul si noi \îți vom trimite un email pentru resetare.</string>
     <string name="forgot_reset_bt">resetează</string>
     <string name="forgot_back_title">înapoi</string>
     <string name="forgot_ic_back">ic_back</string>
 
-    <string name="network_title">Fără conexiune la internet</string>
+    <string name="network_title">Fără conexiune</string>
     <string name="network_description">Verifică conexiunea la internet și încearcă din nou</string>
     <string name="network_bt">Încearcă</string>
     <string name="network_image">logo</string>
 
     <string name="register_ic_login">Înapoi la logare</string>
-    <string name="register_password_confirm">Reintrodu parola</string>
+    <string name="register_password_confirm">Reîntrodu parola</string>
     <string name="register_bt">Înregistrare</string>
     <string name="register_ic_login_title">logare</string>
     <string name="register_name">Nume</string>
@@ -95,7 +110,14 @@
     <string name="register_selection_woman">woman</string>
     <string name="register_age_title">Alegeți vărsta</string>
     <string name="register_age">ani</string>
+    <string name="register_success">Utilizator creat.</string>
+    <string name="register_same_user">Utilizator cu așa e-mail deja există.</string>
+    <string name="register_failed">Înregistrare eșuată.</string>
+
+    <string name="inserted_failed">Datele dvs. nu au fost înserate !</string>
 
     <string name="english">Engleza</string>
     <string name="romanian">Româna</string>
+    <string name="english_logo">english_logo</string>
+    <string name="romanian_logo">romanian_logo</string>
 </resources>

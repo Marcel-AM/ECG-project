@@ -35,8 +35,9 @@ import ro.marcu.licenta.fragments.ForgottenFragment;
 import ro.marcu.licenta.fragments.LoginFragment;
 import ro.marcu.licenta.fragments.NetworkFragment;
 import ro.marcu.licenta.fragments.RegisterFragment;
+import ro.marcu.licenta.languages.AppCompat;
 
-public class FirstScreen extends AppCompatActivity implements CallbackLoginFragment {
+public class FirstScreen extends AppCompat implements CallbackLoginFragment {
 
     public static final String SHARED_PREF_EMAIL = "email_shared_pref";
     public static final String SHARED_PREF_PASSWORD = "password_shared_pref";
@@ -56,7 +57,7 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
         setContentView(R.layout.activity_first_screen);
 
         checkInternetConnection();
-        goToMainScreenExtra();
+        //goToMainScreenExtra();
 
         mAuth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
@@ -159,11 +160,11 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(FirstScreen.this, "Password reset email sent!",
+                    Toast.makeText(FirstScreen.this, R.string.success_reset_mail_sent,
                             Toast.LENGTH_SHORT).show();
                     loginFragment();
                 } else {
-                    Toast.makeText(FirstScreen.this, "Error in sending password reset email",
+                    Toast.makeText(FirstScreen.this, R.string.failure_reset_mail_sent,
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -179,7 +180,7 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
                             saveUser(email, password);
                             goToMainScreen(email);
                         } else {
-                            Toast.makeText(FirstScreen.this, "Wrong Credential OR Bad ethernet connection",
+                            Toast.makeText(FirstScreen.this, R.string.login_failure,
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -194,7 +195,7 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(FirstScreen.this, "User Created.",
+                            Toast.makeText(FirstScreen.this, R.string.register_success,
                                     Toast.LENGTH_SHORT).show();
 
                             userID = mAuth.getCurrentUser().getUid();
@@ -206,10 +207,10 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
                         } else {
 
                             if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                                Toast.makeText(FirstScreen.this, "User with this email already exist.",
+                                Toast.makeText(FirstScreen.this, R.string.register_same_user,
                                         Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(FirstScreen.this, "Register failed.",
+                                Toast.makeText(FirstScreen.this, R.string.register_failed,
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -232,11 +233,11 @@ public class FirstScreen extends AppCompatActivity implements CallbackLoginFragm
                 .add(dataToInsert)
                 .addOnSuccessListener(documentReference -> {
                     Log.d("destinationInserted", "success");
-                    Toast.makeText(this, "Your User data was sent with success !", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "Your User data was sent with success !", Toast.LENGTH_SHORT).show();
 
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Your User data was not sent !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.inserted_failed, Toast.LENGTH_SHORT).show();
                 });
 
     }

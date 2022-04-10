@@ -41,9 +41,10 @@ import ro.marcu.licenta.R;
 import ro.marcu.licenta.cloudData.AdviceData;
 import ro.marcu.licenta.cloudData.BpmData;
 import ro.marcu.licenta.cloudData.UserData;
+import ro.marcu.licenta.languages.AppCompat;
 
 
-public class BPMScreen extends AppCompatActivity {
+public class BPMScreen extends AppCompat {
 
     private static final String TAG = "BPMScreen";
 

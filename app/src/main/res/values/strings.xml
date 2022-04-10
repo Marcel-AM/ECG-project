@@ -8,13 +8,25 @@
     <string name="login_clean">Clean all</string>
     <string name="login_forgotten_txt">Forgot Password?</string>
     <string name="login_ic_register">Register</string>
+    <string name="login_failure">Wrong Credential OR Bad ethernet connection</string>
+
+    <string name="logout_title">Logout</string>
+    <string name="logout_txt">Are you sure you want to logout ?</string>
+    <string name="logout_yes">Yes</string>
+    <string name="logout_no">No</string>
+
+    <string name="success_insert_bpm">Your BPM data was sent with success !</string>
+    <string name="failure_insert_bpm">Your BPM data was not sent !</string>
+
+    <string name="success_reset_mail_sent">Password reset email sent !</string>
+    <string name="failure_reset_mail_sent">Error in sending password reset email !</string>
 
     <string name="bubble_top">Bubble top</string>
     <string name="bubble_bottom">Bubble bottom</string>
 
     <string name="graph_bpm_title">Heart Rate (BPM)</string>
     <string name="x_date_legend">X - date (MM.DD)</string>
-    <string name="y_bpm_legend">Y - BPM (35-120)</string>
+    <string name="y_bpm_legend">Y – BPM (35–120)</string>
     <string name="advice_title">Heart Rate Advice</string>
     <string name="advice_name_user_title">Name :</string>
     <string name="advice_name_user">name</string>
@@ -45,6 +57,8 @@
     <string name="weather_wind">--</string>
     <string name="weather_humidity_title">Humidity</string>
     <string name="weather_humidity">--</string>
+    <string name="weather_failed">Fail to get  weather data !</string>
+    <string name="weather_permission">I need this permission for weather !</string>
 
     <string name="health_activity_title">Activity module</string>
     <string name="health_steps_title">Steps</string>
@@ -58,6 +72,7 @@
     <string name="health_steps_reset_bt">Reset</string>
     <string name="health_ic_km">ic_km</string>
     <string name="health_ic_kcal">ic_kcal</string>
+    <string name="health_permission">I need this permission for counting the steps !</string>
 
     <string name="ic_bpm_screen">ic_bpm_screen</string>
     <string name="ic_main_screen">ic_main_screen</string>
@@ -68,8 +83,8 @@
     <string name="main_ic_heart_beat">ic_heart_beat</string>
     <string name="main_bpm">--</string>
     <string name="main_bpm_title">Heart Rate (BPM)</string>
-    <string name="main_graph_title">Synus Rythm</string>
-    <string name="main_timer_txt">5 sec. to the end ...</string>
+    <string name="main_graph_title">Sinus Rhythm</string>
+    <string name="main_timer_txt"> sec. to the end …</string>
     <string name="main_ic_add_time">ic_add_time</string>
     <string name="main_timer_ready">Ready to save</string>
 
@@ -79,7 +94,7 @@
     <string name="forgot_back_title">back</string>
     <string name="forgot_ic_back">ic_back</string>
 
-    <string name="network_title">No Internet Conection</string>
+    <string name="network_title">No Internet Connection</string>
     <string name="network_description">Check your Internet Connection and Try Again</string>
     <string name="network_bt">Try Again</string>
     <string name="network_image">logo</string>
@@ -94,6 +109,11 @@
     <string name="register_selection_woman">woman</string>
     <string name="register_age_title">Select your age</string>
     <string name="register_age">years</string>
+    <string name="register_success">User Created.</string>
+    <string name="register_same_user">User with this email already exist.</string>
+    <string name="register_failed">Register failed.</string>
+
+    <string name="inserted_failed">Your User data was not sent !</string>
 
     <string name="english">English</string>
     <string name="romanian">Romanian</string>
