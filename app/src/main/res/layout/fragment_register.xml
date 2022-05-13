@@ -204,9 +204,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/firacode_semibold"
+        android:text="@string/register_age"
         android:textColor="@color/app_red"
         android:textSize="14sp"
-        android:text="@string/register_age"
         app:layout_constraintEnd_toEndOf="@id/slider_age"
         app:layout_constraintTop_toTopOf="@+id/title_age" />
 
@@ -275,8 +275,9 @@
         android:backgroundTint="@color/app_orange"
         android:fontFamily="@font/firacode_semibold"
         android:text="@string/register_bt"
-        android:textSize="14sp"
+        android:textAllCaps="false"
         android:textColor="@color/app_yellow"
+        android:textSize="14sp"
         app:cornerRadius="16dp"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -284,8 +285,6 @@
         app:layout_constraintTop_toBottomOf="@+id/slider_age">
 
     </Button>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

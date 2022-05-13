@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -54,8 +55,8 @@ public class MainScreen extends AppCompat {
     private FirebaseDatabase mDatabase;
     private DatabaseReference myRef;
 
-    private int[] value = new int[250];
-    private int[] aux = new int[250];
+    private int[] value = new int[1];
+    private int[] aux = new int[1];
     private String userID;
     private String userEmail;
 
@@ -73,11 +74,13 @@ public class MainScreen extends AppCompat {
     private LineChart mChart;
     private Thread thread;
     private boolean plotData = true;
+    private boolean validateBpm = false;
     private int validateSwitch = 0;
 
-    private TextView readyBpm, timerText, textBpm;
+    private TextView readyBpm, startBpm, timerText, textBpm;
     private ImageView bpmScreen, healthScreen, logoutBt, englishLang, romanianLang;
-    private View backgroundBt;
+    private View backgroundReadyBt, backgroundStartBt;
+    private CardView startCard, timerCard, readyCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,20 +104,30 @@ public class MainScreen extends AppCompat {
         englishLang = findViewById(R.id.english_logo);
         romanianLang = findViewById(R.id.romanian_logo);
 
-        //startReadingData();
+        startReadingData();
         timerText = findViewById(R.id.text_timer);
         readyBpm = findViewById(R.id.text_ready);
+        startBpm = findViewById(R.id.text_start);
         textBpm = findViewById(R.id.heart_value);
-        backgroundBt = findViewById(R.id.background_ready);
+
+        backgroundStartBt = findViewById(R.id.background_start);
+        backgroundReadyBt = findViewById(R.id.background_ready);
+
+        startCard = findViewById(R.id.custom_button_start);
+        timerCard = findViewById(R.id.custom_button_timer);
+        readyCard = findViewById(R.id.custom_button_ready);
 
         mChart = findViewById(R.id.ecg_chart);
 
-        countTimeBPM();
 
         logoutBt.setOnClickListener(view -> logoutAlert(MainScreen.this));
         bpmScreen.setOnClickListener(view -> goToBPMScreen());
 
         healthScreen.setOnClickListener(view -> goToHealthScreen());
+
+        startBpm.setOnClickListener(view -> {
+            countTimeBPM();
+        });
 
         readyBpm.setOnClickListener(view -> {
             Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -164,6 +177,11 @@ public class MainScreen extends AppCompat {
                     Log.d("destinationInserted", "success");
                     countTimeBPM();
                     Toast.makeText(this, R.string.success_insert_bpm, Toast.LENGTH_SHORT).show();
+                    validateBpm = false;
+
+                    readyCard.setVisibility(View.GONE);
+                    timerCard.setVisibility(View.GONE);
+                    startCard.setVisibility(View.VISIBLE);
 
                 })
                 .addOnFailureListener(e -> {
@@ -221,8 +239,9 @@ public class MainScreen extends AppCompat {
 
     private void countTimeBPM() {
         long duration = TimeUnit.SECONDS.toMillis(10);
-        backgroundBt.setVisibility(View.GONE);
-        readyBpm.setVisibility(View.GONE);
+        startCard.setVisibility(View.GONE);
+        timerCard.setVisibility(View.VISIBLE);
+        validateBpm = true;
 
         new CountDownTimer(duration, 10) {
             @Override
@@ -230,13 +249,14 @@ public class MainScreen extends AppCompat {
                 String sDuration = String.format(Locale.ENGLISH, "%01d", TimeUnit.MILLISECONDS.toSeconds(l));
                 String text = getString(R.string.main_timer_txt);
                 timerText.setText(sDuration + " " + text);
+                //stabilizeBPM();
+                //textBpm.setText("--");
             }
 
             @Override
             public void onFinish() {
                 //stabilizeBPM();
-                backgroundBt.setVisibility(View.VISIBLE);
-                readyBpm.setVisibility(View.VISIBLE);
+                readyCard.setVisibility(View.VISIBLE);
                 //Toast.makeText(getApplicationContext(), "Ready to save BPM data", Toast.LENGTH_LONG).show();
             }
         }.start();
@@ -245,7 +265,7 @@ public class MainScreen extends AppCompat {
     private void stabilizeBPM() {
         long currentTime = Calendar.getInstance().getTimeInMillis();
         if (lastBeatTime != 0) {
-            heartRate = (int) (heartRate + ((60000.0 / (currentTime - lastBeatTime)) / 2)) / 2;
+            heartRate = (int) (heartRate + ((70000.0 / (currentTime - lastBeatTime)) / 2)) / 2;
             if (count == 0) {
                 textBpm.setText(Integer.toString(heartRate));
                 count++;
@@ -284,7 +304,7 @@ public class MainScreen extends AppCompat {
                 }
 
                 if (plotData) {
-
+/*
                     if (validateSwitch < 1) {
 
                         aux = value;
@@ -293,8 +313,16 @@ public class MainScreen extends AppCompat {
                         Log.d(TAG, "Validate value: " + validateSwitch);
                         //stabilizeBPM();
                     }
+                    */
 
-                    addEntryECG(value);
+                    if (validateBpm) {
+                        stabilizeBPM();
+                    }else{
+                        textBpm.setText("--");
+                    }
+
+                    showingGraph(value);
+                    //addEntryECG(value);
                     plotData = false;
                 }
 
@@ -422,12 +450,12 @@ public class MainScreen extends AppCompat {
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.setTextColor(Color.WHITE);
         leftAxis.setAxisLineColor(Color.WHITE);
-        leftAxis.setAxisMaximum(7000f);
-        leftAxis.setAxisMinimum(-5000f);
+        leftAxis.setAxisMaximum(1000f);
+        leftAxis.setAxisMinimum(-1000f);
 
         YAxis rightAxis = mChart.getAxisRight();
         rightAxis.setEnabled(false);
-        rightAxis.setAxisMaximum(7000f);
+        rightAxis.setAxisMaximum(1000f);
 
 
         mChart.getAxisLeft().setDrawGridLines(true);

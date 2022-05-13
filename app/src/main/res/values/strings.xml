@@ -86,11 +86,12 @@
     <string name="main_graph_title">Sinus Rhythm</string>
     <string name="main_timer_txt"> sec. to the end …</string>
     <string name="main_ic_add_time">ic_add_time</string>
+    <string name="main_timer_start">Start BPM</string>
     <string name="main_timer_ready">Ready to save</string>
 
     <string name="forgot_title">Forgot password?</string>
     <string name="forgot_description">Enter your e-mail address we\'ll send you an email to reset your password.</string>
-    <string name="forgot_reset_bt">reset</string>
+    <string name="forgot_reset_bt">Reset</string>
     <string name="forgot_back_title">back</string>
     <string name="forgot_ic_back">ic_back</string>
 

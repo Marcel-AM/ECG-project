@@ -447,6 +447,7 @@
                 android:backgroundTint="@color/app_orange"
                 android:fontFamily="@font/firacode_semibold"
                 android:text="@string/health_steps_reset_bt"
+                android:textAllCaps="false"
                 android:textColor="@color/app_yellow"
                 android:textSize="14sp"
                 app:cornerRadius="16dp"

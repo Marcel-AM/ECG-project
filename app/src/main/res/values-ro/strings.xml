@@ -87,11 +87,12 @@
     <string name="main_graph_title">Ritmul sinusoidal</string>
     <string name="main_timer_txt"> sec. pană la final …</string>
     <string name="main_ic_add_time">ic_add_time</string>
+    <string name="main_timer_start">Start BPM</string>
     <string name="main_timer_ready">Salvează</string>
 
     <string name="forgot_title">Ai uitat parola?</string>
     <string name="forgot_description">Înserează emailul si noi \îți vom trimite un email pentru resetare.</string>
-    <string name="forgot_reset_bt">resetează</string>
+    <string name="forgot_reset_bt">Resetează</string>
     <string name="forgot_back_title">înapoi</string>
     <string name="forgot_ic_back">ic_back</string>
 

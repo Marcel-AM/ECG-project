@@ -116,6 +116,7 @@
         android:backgroundTint="@color/app_orange"
         android:fontFamily="@font/firacode_semibold"
         android:text="@string/forgot_reset_bt"
+        android:textAllCaps="false"
         android:textColor="@color/app_yellow"
         android:textSize="14sp"
         app:cornerRadius="16dp"
@@ -130,15 +131,14 @@
         android:id="@+id/reset_tView"
         android:layout_width="9dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
         android:fontFamily="@font/firacode_light"
         android:text="@string/forgot_back_title"
         android:textColor="@color/white"
         android:textSize="8sp"
-        android:layout_marginStart="65dp"
-        app:layout_constraintStart_toStartOf="@id/reset_to_lView"
-        app:layout_constraintTop_toTopOf="@id/reset_to_lView"
         app:layout_constraintBottom_toBottomOf="@+id/reset_to_lView"
-        >
+        app:layout_constraintStart_toStartOf="@id/reset_to_lView"
+        app:layout_constraintTop_toTopOf="@id/reset_to_lView">
 
     </TextView>
 

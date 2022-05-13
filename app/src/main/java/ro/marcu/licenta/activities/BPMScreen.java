@@ -107,8 +107,8 @@ public class BPMScreen extends AppCompat {
         barDataSet.setValueTextSize(12f);
 
         BarData barData = new BarData(barDataSet);
-        barData.setValueTextColor(Color.parseColor("#E52528")); //app_red
-        barData.setBarWidth(0.5f);
+        barData.setValueTextColor(Color.parseColor("#33CCCC")); //app_blue
+        barData.setBarWidth(0.3f);
 
         settingBarChart(barData);
 

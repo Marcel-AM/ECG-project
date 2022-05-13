@@ -137,11 +137,66 @@
             </com.github.mikephil.charting.charts.LineChart>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/custom_button"
+                android:id="@+id/custom_button_start"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="50dp"
                 android:backgroundTint="@color/app_orange"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ecg_chart">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/background_start"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/app_orange"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                    </View>
+
+                    <TextView
+                        android:id="@+id/text_start"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/firacode_semibold"
+                        android:padding="10dp"
+                        android:text="@string/main_timer_start"
+                        android:textColor="@color/app_yellow"
+                        android:textSize="14sp"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                    </TextView>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/custom_button_timer"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="50dp"
+                android:backgroundTint="@color/app_orange"
+                android:visibility="gone"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="0dp"
 
@@ -200,12 +255,36 @@
 
                     </ImageView>
 
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/custom_button_ready"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="50dp"
+                android:backgroundTint="@color/app_orange"
+                android:visibility="gone"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ecg_chart">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
                     <View
                         android:id="@+id/background_ready"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/app_yellow"
-                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -218,13 +297,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/firacode_semibold"
-                        android:padding="15dp"
+                        android:padding="10dp"
                         android:text="@string/main_timer_ready"
                         android:textColor="@color/app_orange"
-                        android:textSize="11sp"
-                        android:visibility="gone"
-
-
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -307,11 +383,11 @@
     <View
         android:layout_width="80dp"
         android:layout_height="30dp"
-        app:layout_constraintTop_toTopOf="@id/english_logo"
+        android:background="@drawable/back_language_icon"
         app:layout_constraintBottom_toBottomOf="@id/english_logo"
-        app:layout_constraintStart_toStartOf="@id/english_logo"
         app:layout_constraintEnd_toEndOf="@id/romanian_logo"
-        android:background="@drawable/back_language_icon"/>
+        app:layout_constraintStart_toStartOf="@id/english_logo"
+        app:layout_constraintTop_toTopOf="@id/english_logo" />
 
     <ImageView
         android:id="@+id/english_logo"
